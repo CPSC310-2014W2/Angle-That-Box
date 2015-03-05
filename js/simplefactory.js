@@ -3,7 +3,7 @@ app.factory('SimpleFactory', function($firebase)
 {
   
   var factory = {};
-  var url = "https://radiant-torch-6582.firebaseio.com/";
+  var url = "https://angle-that-box.firebaseio.com/";
   var ref = new Firebase(url);
   var listOfItems = $firebase(ref).$asArray();
 
@@ -19,11 +19,6 @@ app.factory('SimpleFactory', function($firebase)
 	  else {
 	  	alert("Item is already in list");
 	  }
-  };
-
-  factory.remove = function(id) {
-	    var itemRef = new Firebase(url + '/' + id);
-      itemRef.remove();
   };
 
   return factory;

@@ -1,12 +1,13 @@
 <br><br><br><br><br><br>
 <div class="medium-4 medium-centered columns">
-	<h5>Input<h5>
+	<h5>Input</h5>
 	<input type="text" ng-model="input">
-	<h5>Filter<h5> 
+	<h5>Filter</h5> 
 	<input type="text" ng-model="search">
 	<button class="small button" ng-click="add(input)">Add to list</button> <!-- This calls the add method within the controller whenever the button is clicked-->
-	<a href="#/partial"><button class="small button">Redirect</button></a>
-	<div id="panel" class="panel" style="text-align:center" ng-click="remove(item.$id)" ng-repeat="item in list | filter:search">{{item.name}}</div> <!-- list is an array defined in the controller. For every item in list, print the item in a panel. This also uses a filter. It filters by whatever is in the search model, which was defined in line 6-->
+	<a href="#/createAccount"><button class="small button">Create New Account</button></a>
+    <!-- list is an array defined in the controller. For every item in list, print the item in a panel. This also uses a filter. It filters by whatever is in the search model -->
+	<div id="panel" class="panel" style="text-align:center" ng-repeat="item in list | filter:search">{{item.name}}</div>
 </div>
 
 
