@@ -1,5 +1,5 @@
 //think of this as a class
-app.factory('SimpleFactory', function($firebase)
+app.factory('DashboardFactory', function($firebase)
 {
   
   var factory = {};

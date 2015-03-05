@@ -1,16 +1,18 @@
-app.factory('UserFactory', function($firebase)
+app.factory('UserFactory', function($firebase, $location)
 {
    var factory = {};
    var url = "https://angle-that-box.firebaseio.com/users";
    var ref = new Firebase(url);
    var userList = $firebase(ref).$asArray();
    
-   factory.loginWithGoogle = function() {
+   factory.loginWithGoogle = function($scope) {
       ref.authWithOAuthPopup("google", function(error, authData) {
          if (error) {
             console.log("Login Failed!", error);
          } else {
-            console.log("Authenticated successfully with payload:", authData);
+            $location.path("/dashboard");
+            $location.replace();
+            $scope.$apply();
          }
       });
    }
