@@ -1,18 +1,12 @@
 <div class="medium-4 medium-centered columns">
     <h3>Create account</h3>
-    <h5>Email Address</h5>
-    <input type="text" ng-model="emailInput">
-    <h5>Password</h5> 
-    <input type="text" ng-model="passwordInput">
     <h5>Name</h5>
     <input type="text" ng-model="nameInput">
     <h5>Birth Date</h5>
     <input type="date" ng-model="birthDateInput">
     
     <!-- Validate and add new user -->
-    <button class="small button" ng-click="add(emailInput, passwordInput, nameInput, birthDateInput)">Create</button>
+    <button class="small button" ng-click="add(nameInput, birthDateInput)">Authenticate with Google</button>
     <!-- Cancel user creation and return to main page -->
     <a href="#/"><button class="small button">Cancel</button></a>
 </div>
-
-

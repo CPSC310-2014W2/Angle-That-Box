@@ -36,6 +36,10 @@ app.controller('DashboardCtrl', function($scope, $firebase, DashboardFactory) { 
          $scope.input = ""; //input is defined in dashboard.html
       }
    }
+   
+   $scope.logout = function() {
+      factory.logout($scope, $auth);
+   }
 
 });
 
@@ -47,11 +51,8 @@ app.controller('UserAccountCtrl', function($scope, $firebase, UserFactory) {
       factory.loginWithGoogle($scope);
    }
    
-   $scope.add = function(email, password, name, birthDate) {
-      //TODO: validate user input, check email not already registered
-      if (email != undefined && email != "") {
-         factory.addUser(email, password, name, birthDate);
-      }
+   $scope.add = function(name, birthDate) {
+      factory.addUser($scope, name, birthDate);
    }
 
 });
