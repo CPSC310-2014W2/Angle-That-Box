@@ -1,7 +1,7 @@
-app.controller('DashboardCtrl', function($scope, $firebase, DashboardFactory) { //name is SimpleCtrl, the parameters are dependencies
+app.controller('DashboardCtrl', function($scope, $firebase, DashboardFactory) {
 
-   var factory = DashboardFactory; //this is an instance of the factory
-   $scope.list = factory.getList(); //$scope is the link between view and controller, getList is a function of DashboardFactory
+   var factory = DashboardFactory;
+   $scope.list = factory.getList();
 
    $scope.add = function(input) { 
       if (input != undefined && input != "") {
@@ -9,6 +9,10 @@ app.controller('DashboardCtrl', function($scope, $firebase, DashboardFactory) { 
 
          $scope.input = ""; //input is defined in dashboard.html
       }
+   }
+   
+   $scope.logout = function() {
+      factory.logout();
    }
 
 });

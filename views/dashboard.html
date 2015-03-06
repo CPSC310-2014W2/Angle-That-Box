@@ -3,8 +3,11 @@
 	<input type="text" ng-model="input">
 	<h5>Filter</h5> 
 	<input type="text" ng-model="search">
-	<button class="small button" ng-click="add(input)">Add to list</button> <!-- This calls the add method within the controller whenever the button is clicked-->
+    
+     <!-- ng-click calls methods from the controller whenever the button is clicked-->
+	<button class="small button" ng-click="add(input)">Add to list</button>
 	<button class="small button" ng-click="logout()">Log out</button>
-    <!-- list is an array defined in the controller. For every item in list, print the item in a panel. This also uses a filter. It filters by whatever is in the search model -->
+    
+    <!-- Filters a list defined in the controller, and prints each result in the panel. -->
 	<div id="panel" class="panel" style="text-align:center" ng-repeat="item in list | filter:search">{{item.name}}</div>
 </div>
