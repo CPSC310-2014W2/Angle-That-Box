@@ -12,8 +12,7 @@ app.factory('DashboardFactory', function($firebase)
   };
 
   factory.addToList = function(item) {
-	  if ($.inArray(item, listOfItems) == -1) { //this line is just jquery
-		  // listOfItems.push(item);
+	  if ($.inArray(item, listOfItems) == -1) {
       listOfItems.$add({name: item});
 	  } 
 	  else {

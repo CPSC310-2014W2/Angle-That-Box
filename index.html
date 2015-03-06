@@ -2,14 +2,6 @@
 <html ng-app="app">
 <head>
     <link rel="stylesheet" href="css/foundation.css" />
-    <style>
-        #panel:hover
-        {
-            background-color:gray;
-            opacity:0.7;
-            color:white;
-        }
-    </style>
 </head>
 <body>
     <!-- ng-view is a placeholder for the other views, the default url should redirect to main.html -->
@@ -19,17 +11,25 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/foundation.min.js"></script>
 
-    <!-- angularjs scripts -->
+    <!-- AngularJS scripts -->
     <script type="text/javascript" src="scripts/angular.js"></script>
     <script type="text/javascript" src="scripts/angular-route.js"></script>
     <script type="text/javascript" src="scripts/firebase.js"></script>
     <script type="text/javascript" src="scripts/angularfire.min.js"></script>
 
-    <!-- user defined -->
-    <script type="text/javascript" src="js/controller.js"></script>
-    <script type="text/javascript" src="js/dashboardfactory.js"></script>
-    <script type="text/javascript" src="js/userfactory.js"></script>
+    <!-- Modules -->
+    <script type="text/javascript" src="js/app.js"></script>
 
+    <!-- Controllers -->
+    <script type="text/javascript" src="js/controllers/dashboardController.js"></script>
+    <script type="text/javascript" src="js/controllers/userController.js"></script>
+
+    <!-- Factories -->
+    <script type="text/javascript" src="js/factories/dashboardFactory.js"></script>
+    <script type="text/javascript" src="js/factories/userFactory.js"></script>
+
+    <!-- Route Config -->
+    <script type="text/javascript" src="js/routeConfig.js"></script>
 </body>
 <style>
 </style>
