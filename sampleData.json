@@ -1,0 +1,72 @@
+{
+  "locations": {
+    "location1uid": {
+      "CULTURAL_SPACE_NAME":"Arts Club Theatre - Granville Island Stage",
+      "WEBSITE":"www.artsclub.com",
+      "TYPE":"Theatre/Performance",
+      "PRIMARY_USE":"Theatre",
+      "ADDRESS":"1585 Johnston St, Vancouver, BC, V6H 3R9",
+      "LOCAL_AREA":"Fairview",
+      "OWNERSHIP":"Government",
+      "SQUARE_FEET":17790,
+      "NUMBER_OF_SEATS":430,
+      "LONGITUDE":-123.134362,
+      "LATITIUDE":49.272124
+    },
+    "location2uid": {
+      "CULTURAL_SPACE_NAME":"Vancouver Adapted Music",
+      "WEBSITE":"www.vams.org/",
+      "TYPE":"Studio/Rehearsal ",
+      "PRIMARY_USE":"Film/Recording Studio",
+      "ADDRESS":"4225 Laurel St, Vancouver, BC, V5Z 2G9",
+      "LOCAL_AREA":"South Cambie",
+      "OWNERSHIP":"Privately Owned",
+      "SQUARE_FEET":null,
+      "NUMBER_OF_SEATS":null,
+      "LONGITUDE":-123.1248217,
+      "LATITIUDE":49.2476977
+    },
+    "location3uid": {
+      "CULTURAL_SPACE_NAME":"Yuk Yuk's Comedy Club",
+      "WEBSITE":"http://www.yukyuks.com",
+      "TYPE":"Theatre/Performance",
+      "PRIMARY_USE":"Performance Space",
+      "ADDRESS":"2837 Cambie St, Vancouver, BC, V5Z 3Y8",
+      "LOCAL_AREA":"Fairview",
+      "OWNERSHIP":"Privately Owned",
+      "SQUARE_FEET":null,
+      "NUMBER_OF_SEATS":150,
+      "LONGITUDE":-123.1151069,
+      "LATITIUDE":49.2600654
+    }
+  },
+  "users": {
+    "112816017595668380847": {
+      "authProvider": "google",
+      "name": "Mark Sayson",
+      "birthdate": ""
+    },
+    "userId2": {
+      "authProvider": "custom",
+      "name": "Richard Feynman",
+      "birthdate": "1918-05-11"
+    },
+    "asdf1234": {
+      "authProvider": "google",
+      "name": "Elizabeth Gould",
+      "birthdate": null
+    }
+  },
+  "favouriteLocations": {
+    "user1": {
+      "favourites": [
+      {"name":"Vancouver Art Gallery"}, 
+      {"name":"Stanley Park"}
+      ],
+      "placestogo": [
+      {"name":"Contemporary Art Gallery"},
+      {"name":"Roundhouse"}
+      ]
+    }
+  }
+}
