@@ -1,0 +1,15 @@
+#banner {
+	background-image:url("http://upload.wikimedia.org/wikipedia/commons/2/27/Vancouver_dusk_pano.jpg");
+	background-position:62% 4%;
+	background-attachment:fixed;
+	min-height:400px;
+	margin-bottom:0px;
+}
+
+.navbar {
+	margin:0;
+}
+
+.spacing {
+	margin-top:20px;
+}
