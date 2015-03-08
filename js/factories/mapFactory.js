@@ -1,6 +1,7 @@
-app.factory('MapFactory', function($http) 
+app.factory('MapFactory', function($http, $compile) 
 {
 	var factory = {};
+	var reg = /http/;
 
 	factory.createMap = function() {
 		return new google.maps.Map(document.getElementById('map-canvas'));
@@ -28,11 +29,25 @@ app.factory('MapFactory', function($http)
 	    });
 
 		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent('<h1>' + obj.CULTURAL_SPACE_NAME + '<h1>');
+			infowindow.setContent(getContentString(obj));
 			infowindow.open(amap, marker);
 		});
 
 		return marker;
+	}
+
+	function getContentString(obj) {
+		var s = "";
+		var web = obj.WEBSITE;
+
+		if (!reg.test(web)) {
+			s = "http://"
+		}
+
+		return '<h3>' + obj.CULTURAL_SPACE_NAME + '</h3>'
+		+ '<p>' + obj.ADDRESS + '</p>'
+		+ '<p>' + obj.TYPE + '</p>'
+		+ '<a href=' + s + web + '>' + web + '</a>'
 	}
 
 	return factory;
