@@ -2,8 +2,8 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, DashboardFact
 
    var factory = DashboardFactory; //this is an instance of the factory
    var mapFactory = MapFactory;
-   $scope.markers = []; //this is not used at the moment, but we may need a reference to the markers
    $scope.list = factory.getList(); //$scope is the link between view and controller, getList is a function of DashboardFactory
+   $scope.markers = []; //storing markers for reference
 
    $scope.add = function(input) { 
       if (input != undefined && input != "") {
@@ -18,6 +18,9 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, DashboardFact
    }
    
    var map = mapFactory.createMap();
-   mapFactory.getMapData(map, $scope.markers);
+
+   $scope.list.$loaded().then(function() {
+      mapFactory.getMapData(map, $scope.list, $scope.markers);
+   });
 
 });

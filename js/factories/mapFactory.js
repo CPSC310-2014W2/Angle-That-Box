@@ -7,22 +7,23 @@ app.factory('MapFactory', function($http, $compile)
 		return new google.maps.Map(document.getElementById('map-canvas'));
 	}
 
-	factory.getMapData = function(amap, markers) { //this just uses the sample json file for now instead of querying firebase
-		$http.get('sampleData.json').success(function(data) {
-			var bounds = new google.maps.LatLngBounds(); 
-		    for (var key in data.locations) {
-		    	var loc = data.locations[key];
-		    	bounds.extend(new google.maps.LatLng(loc.LATITIUDE, loc.LONGITUDE));
-			    markers.push(createMarker(loc, amap));
-		   }
-		   amap.fitBounds(bounds);
-	   })
+	factory.getMapData = function(amap, inputlist, markers) {
+		var len = inputlist.length-1;
+		var bounds = new google.maps.LatLngBounds(); 
+		while(len >= 0) {
+			var obj = inputlist[len];
+			bounds.extend(new google.maps.LatLng(obj.LATITIUDE, obj.LONGITUDE));
+			markers.push(createMarker(obj, amap, len));
+			len--;
+		}
+		amap.fitBounds(bounds);
 	}
 
-	function createMarker(obj, amap) {
+	function createMarker(obj, amap, ind) {
 		var marker = new google.maps.Marker({
 		    position: new google.maps.LatLng(obj.LATITIUDE, obj.LONGITUDE),
 		    map: amap,
+		    index: ind //storing the index for future reference
 		});
 
 		var infowindow = new google.maps.InfoWindow({ 

@@ -24,7 +24,9 @@
 					<button class="btn btn-default" ng-click="logout()">Log out</button>
 				</div>
 
-				<button id="panel" class="well" style="text-align:center;width:400px" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
+				<div class="form-group">
+					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
+				</div>
 			</form>
 		</div>
 		<div id="map-canvas" style="height:400px; width:750px; margin: 0 auto 0 auto; border:2px solid black;"></div>

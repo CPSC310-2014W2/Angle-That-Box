@@ -9,9 +9,6 @@ app.factory('DashboardFactory', function($firebase, $location)
       return listOfItems;
    };
 
-
-
-
    factory.addToList = function(item) {
       if ($.inArray(item, listOfItems) == -1) {
          listOfItems.$add({name: item});
