@@ -10,15 +10,21 @@
 					<label>Filter</label> 
 					<input type="text" class="form-control" ng-model="search">
 				</div>
+
+				<div>
+					<label>Order By</label>
+				<select data-ng-model='selectedSortOrder'
+           			data-ng-options="option.value as option.name for option in [{'value':'+CULTURAL_SPACE_NAME','name':'Space Name: A-Z'}, {'value':'-TYPE','name':'Type'}]" 
+           			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'"></select>  
+      			</div>
 			    
 			     <!-- ng-click calls methods from the controller whenever the button is clicked-->
 			    <div class="form-group">
 					<button class="btn btn-default" ng-click="add(input)">Add to list</button>
 					<button class="btn btn-default" ng-click="logout()">Log out</button>
 				</div>
-			    
-			    <!-- Filters a list defined in the controller, and prints each result in the panel. -->
-				<div id="panel" class="well" style="text-align:center" ng-repeat="item in list | filter:search">{{item.name}}</div>
+
+				<button id="panel" class="well" style="text-align:center;width:400px" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
 			</form>
 		</div>
 		<div id="map-canvas" style="height:400px; width:750px; margin: 0 auto 0 auto; border:2px solid black;"></div>

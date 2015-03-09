@@ -1,13 +1,16 @@
 app.factory('DashboardFactory', function($firebase, $location)
 {
    var factory = {};
-   var url = "https://angle-that-box.firebaseio.com/";
+   var url = "https://angle-that-box.firebaseio.com/locations";
    var ref = new Firebase(url);
    var listOfItems = $firebase(ref).$asArray();
 
    factory.getList = function() {
       return listOfItems;
    };
+
+
+
 
    factory.addToList = function(item) {
       if ($.inArray(item, listOfItems) == -1) {
