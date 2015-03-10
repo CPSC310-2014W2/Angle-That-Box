@@ -2,9 +2,16 @@ app.factory('MapFactory', function($http, $compile)
 {
 	var factory = {};
 	var reg = /http/;
+	var openwindows = [];
 
 	factory.createMap = function() {
-		return new google.maps.Map(document.getElementById('map-canvas'));
+		var map = new google.maps.Map(document.getElementById('map-canvas'));
+
+		google.maps.event.addListener(map, "click", function(event) {
+		    closeOpenWindows();
+		});
+
+		return map;
 	}
 
 	factory.getMapData = function(amap, inputlist, markers) {
@@ -32,23 +39,31 @@ app.factory('MapFactory', function($http, $compile)
 		google.maps.event.addListener(marker, 'click', function() {
 			infowindow.setContent(getContentString(obj));
 			infowindow.open(amap, marker);
+			openwindows.push(infowindow);
 		});
 
 		return marker;
 	}
 
 	function getContentString(obj) {
-		var s = "";
-		var web = obj.WEBSITE;
+		var prefix = "";
+		var webURL = obj.WEBSITE;
 
-		if (!reg.test(web)) {
-			s = "http://"
+		if (!reg.test(webURL)) {
+			prefix = "http://"
 		}
 
 		return '<h3>' + obj.CULTURAL_SPACE_NAME + '</h3>'
 		+ '<p>' + obj.ADDRESS + '</p>'
 		+ '<p>' + obj.TYPE + '</p>'
-		+ '<a href=' + s + web + '>' + web + '</a>'
+		+ '<a href=' + prefix + webURL + ' target="_blank">' + webURL + '</a>'
+	}
+
+	function closeOpenWindows() {
+		for (var i = 0; i < openwindows.length; i++ ) {
+	        openwindows[i].close();
+		}
+		openwindows = [];
 	}
 
 	return factory;
