@@ -19,5 +19,17 @@ app.config(function($routeProvider) {
             templateUrl: "views/createAccount.html",
             controller: "UserAccountCtrl"
          }
+   )
+   .when("/wishlist",
+         {
+            templateUrl: "views/wishlist.html",
+            controller: "WishlistController"
+         }
+   )
+   .when("/createAccount",
+         {
+            templateUrl: "views/favourites.html",
+            controller: "FavouriteController"
+         }
    );
 });
