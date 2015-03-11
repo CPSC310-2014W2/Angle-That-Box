@@ -1,10 +1,11 @@
 app.factory('WishlistFactory', function($firebase, $location)
 {
    var factory = {};
-   //var url = ""https://angle-that-box.firebaseio.com"";
-   //var userName = user1 //need to get current userName?;
-   //var ref = new Firebase(url + '/favouriteLocations/' + userName + '/wishlist');
-   var ref = new Firebase("https://dazzling-torch-7261.firebaseio.com/favouriteLocations/user1/wishlist");
+   var url = "https://angle-that-box.firebaseio.com";
+   var uRef = new Firebase(url);
+   var currentUser = uRef.getAuth();
+   var userID = currentUser.google.id;
+   var ref = new Firebase(url + '/favouriteLocations/' + userID + '/wishlist');
    var wishlist = $firebase(ref).$asArray();
 
    factory.getWishlist = function() {
