@@ -12,8 +12,16 @@ app.factory('WishlistFactory', function($firebase, $location)
    };
 
    factory.add = function(item) {
-      if ($.inArray(item, wishlist) == -1) {
-         ref.push(item);
+
+      var wishlistSnap;
+      var name = item.name;
+
+      ref.once('value', function(dataSnapshot) {
+         wishlistSnap = dataSnapshot;
+      });
+
+      if (!wishlistSnap.hasChild(name)) {
+         ref.child(name).set(name);
          alert("Add Successful");
       } else {
          alert("Item is already in Wishlist");

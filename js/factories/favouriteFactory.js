@@ -11,9 +11,17 @@ app.factory('FavouriteFactory', function($firebase, $location)
       return favourites;
    };
 
-   factory.add = function(item) {
-      if ($.inArray(item, favourites) == -1) {
-         ref.push(item);
+ factory.add = function(item) {
+
+      var favlistSnap;
+      var name = item.name;
+
+      ref.once('value', function(dataSnapshot) {
+         favlistSnap = dataSnapshot;
+      });
+
+      if (!favlistSnap.hasChild(name)) {
+         ref.child(name).set(name);
          alert("Add Successful");
       } else {
          alert("Item is already in Favourites");
