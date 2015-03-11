@@ -40,7 +40,7 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, DashboardFact
    $scope.logout = function() {
 	   factory.logout();
    }
-   
+
    var map = mapFactory.createMap();
 
    $scope.list.$loaded().then(function() {
