@@ -13,7 +13,7 @@ app.factory('FavouriteFactory', function($firebase, $location)
 
    factory.add = function(item) {
       if ($.inArray(item, favourites) == -1) {
-         favourites.push({name:item.CULTURAL_SPACE_NAME});
+         ref.push(item);
          alert("Add Successful");
       } else {
          alert("Item is already in Favourites");

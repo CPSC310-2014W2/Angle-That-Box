@@ -13,7 +13,7 @@ app.factory('WishlistFactory', function($firebase, $location)
 
    factory.add = function(item) {
       if ($.inArray(item, wishlist) == -1) {
-         wishlist.push({name:item.CULTURAL_SPACE_NAME});
+         ref.push(item);
          alert("Add Successful");
       } else {
          alert("Item is already in Wishlist");
