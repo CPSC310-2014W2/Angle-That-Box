@@ -16,7 +16,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       '../scripts/angular.js',
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyCubhvEUZ0AeBAEX69PNztKZyJ53XfZMTY",
       '../scripts/jquery.min.js',
       '../scripts/*.js',
       '../js/*.js',

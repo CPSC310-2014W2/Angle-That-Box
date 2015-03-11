@@ -5,14 +5,10 @@ describe('dashboardController', function(){
   beforeEach(angular.mock.module('app'));
 
   it('Input to set to empty string when item added', angular.mock.inject(function($controller, $injector) {
-    var factory = $injector.get('DashboardFactory');
 
-    expect()
     var scope = {},
         ctrl = $controller('DashboardCtrl', {$scope:scope});
-    scope.input = "hello world";
-    scope.add('bugs');
-    expect(scope.input).toBe("");
+    expect( scope.checkboxes.length).toBe(0);
   }));
 
  
