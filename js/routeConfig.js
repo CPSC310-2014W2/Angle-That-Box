@@ -26,7 +26,7 @@ app.config(function($routeProvider) {
             controller: "WishlistController"
          }
    )
-   .when("/createAccount",
+   .when("/favourites",
          {
             templateUrl: "views/favourites.html",
             controller: "FavouriteController"
