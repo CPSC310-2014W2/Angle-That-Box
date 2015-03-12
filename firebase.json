@@ -1,0 +1,9 @@
+{
+  "firebase": "angle-that-box",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

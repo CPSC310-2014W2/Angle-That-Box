@@ -1,6 +1,6 @@
 <div class="container-fluid spacing">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3"> 
 			<form>
 				<div class="form-group">
 					<label>Input</label>
@@ -13,19 +13,26 @@
 
 				<div>
 					<label>Order By</label>
-				<select data-ng-model='selectedSortOrder'
+
+				<select data-ng-model='selectedSortOrder' 
            			data-ng-options="option.value as option.name for option in [{'value':'+CULTURAL_SPACE_NAME','name':'Name: A-Z'}, {'value':'-TYPE','name':'Type'}]" 
-           			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'"></select>  
+           			data-ng-change="sort(selectedSortOrder)" 
+           			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'">
+           		</select>  
+
       			</div>
 			    
 			     <!-- ng-click calls methods from the controller whenever the button is clicked-->
 			    <div class="form-group">
-					<button class="btn btn-default" ng-click="add(input)">Add to list</button>
 					<button class="btn btn-default" ng-click="logout()">Log out</button>
+					<button class="btn btn-default" ng-click="addFavourites()">Favourite</button>
+					<button class="btn btn-default" ng-click="addWishlist()">Wishlist</button>
+					<a href="#/favourites"><button class="btn btn-primary">Favourites</button></a>
+					<a href="#/wishlist"><button class="btn btn-primary">Wishlist</button></a>
 				</div>
 
 				<div class="form-group">
-					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
+					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
 				</div>
 			</form>
 		</div>
