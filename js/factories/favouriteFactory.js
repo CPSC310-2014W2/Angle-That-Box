@@ -17,7 +17,7 @@ app.factory('FavouriteFactory', function($firebase, $location)
    factory.add = function(item) {
 
       var favSnap;
-      var name = item.name;
+      var name = item.CULTURAL_SPACE_NAME;
 
       ref.once('value', function(dataSnapshot) {
          favSnap = dataSnapshot;

@@ -17,7 +17,7 @@ app.factory('WishlistFactory', function($firebase, $location)
    factory.add = function(item) {
 
       var wishlistSnap;
-      var name = item.name;
+      var name = item.CULTURAL_SPACE_NAME;
 
       ref.once('value', function(dataSnapshot) {
          wishlistSnap = dataSnapshot;
