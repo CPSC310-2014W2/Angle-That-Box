@@ -19,10 +19,12 @@ app.factory('WishlistFactory', function($firebase, $location)
       var wishlistSnap;
       var name = item.CULTURAL_SPACE_NAME;
 
+      //wishlistSnap is data read at the wishlist location
       ref.once('value', function(dataSnapshot) {
          wishlistSnap = dataSnapshot;
       });
 
+      //only add if there are no duplicates
       if (!wishlistSnap.hasChild(name)) {
          ref.child(name).set({"name":name});
          alert("Add Successful");

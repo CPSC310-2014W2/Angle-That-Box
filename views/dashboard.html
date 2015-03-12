@@ -13,9 +13,10 @@
 
 				<div>
 					<label>Order By</label>
+					<!-- sort is called everytime selectedSortOrder changes-->
 				<select data-ng-model='selectedSortOrder' 
            			data-ng-options="option.value as option.name for option in [{'value':'+CULTURAL_SPACE_NAME','name':'Space Name: A-Z'}, {'value':'-TYPE','name':'Type'}]" 
-           			data-ng-change="sort(selectedSortOrder)"
+           			data-ng-change="sort(selectedSortOrder)" 
            			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'">
            		</select>  
       			</div>

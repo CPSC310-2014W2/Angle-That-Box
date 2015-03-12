@@ -8,6 +8,7 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.markers = []; //storing markers for reference
    $scope.checkboxes = []; //to keep track of which boxes are checked
 
+   //set all checkboxes to false at first, list is initially sorted by name
    $scope.list.$loaded().then(function() {
       $scope.list = $filter('orderBy')($scope.list, '+CULTURAL_SPACE_NAME');
       angular.forEach($scope.list,function (item){
@@ -18,13 +19,10 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
       });
       
    });
-
+   
+   //sort selections to reflect how they are sorted in the view 
    $scope.sort = function(selectedSortOrder) {
-      if (selectedSortOrder == '+CULTURAL_SPACE_NAME') {
-      $scope.checkboxes = $filter('orderBy')($scope.checkboxes, '+CULTURAL_SPACE_NAME');
-      } else {
-      $scope.checkboxes = $filter('orderBy')($scope.checkboxes, '-TYPE');
-      }
+      $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
    }
    
    $scope.unCheckAll = function() {

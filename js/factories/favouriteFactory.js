@@ -19,10 +19,12 @@ app.factory('FavouriteFactory', function($firebase, $location)
       var favSnap;
       var name = item.CULTURAL_SPACE_NAME;
 
+      //favSnap is data read at the favourites location
       ref.once('value', function(dataSnapshot) {
          favSnap = dataSnapshot;
       });
 
+      //only add if there are no duplicates
       if (!favSnap.hasChild(name)) {
          ref.child(name).set({"name":name});
          alert("Add Successful");
