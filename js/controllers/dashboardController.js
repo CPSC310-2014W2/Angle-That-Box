@@ -9,6 +9,7 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
 
+
    //set all checkboxes to false at first, list is initially sorted by name
    $scope.list.$loaded().then(function() {
       $scope.list = $filter('orderBy')($scope.list, '+CULTURAL_SPACE_NAME');
@@ -24,6 +25,17 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    //sort selections to reflect how they are sorted in the view 
    $scope.sort = function(selectedSortOrder) {
       $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
+   }
+
+
+   //filter selections to reflect how they are filtered in the view
+   $scope.filtertype = function(searchTYPE) {
+      $scope.checkboxes = $filter('filter')($scope.checkboxes, searchTYPE);
+   }
+
+   //filter selections to reflect how they are filtered in the view
+   $scope.filtername = function(searchCULTURAL_SPACE_NAME) {
+      $scope.checkboxes = $filter('filter')($scope.checkboxes, searchCULTURAL_SPACE_NAME);
    }
    
    $scope.list.$loaded().then(function(){

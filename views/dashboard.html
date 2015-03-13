@@ -14,10 +14,11 @@
 				</div>
 				<div class="form-group">
 					<label> Filter by name: </label>
-					<input type="text" class="form-control" ng-model="search.CULTURAL_SPACE_NAME">
+					<input type="text" class="form-control" ng-model="search.CULTURAL_SPACE_NAME" ng-change="filtername(search.CULTURAL_SPACE_NAME)">
 					<label> Filter by type:	</label>
 					<select data-ng-model='search.TYPE'
            			data-ng-options="option.value as option.name for option in filterTypes"
+           			data-ng-change="filtertype(search.TYPE)"
            			data-ng-init="search.TYPE=''">
 					</select>
 				</div>
