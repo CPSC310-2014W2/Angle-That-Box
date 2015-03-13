@@ -24,9 +24,12 @@ app.factory('WishlistFactory', function($firebase, $location)
          wishlistSnap = dataSnapshot;
       });
 
+      //turns name into a valid firebase key
+      var key = name.replace(/\.|\#|\$|\[|\]|\//g, ' ');
+
       //only add if there are no duplicates
-      if (!wishlistSnap.hasChild(name)) {
-         ref.child(name).set({"name":name});
+      if (!wishlistSnap.hasChild(key)) {
+         ref.child(key).set({"name":name});
          alert("Add Successful");
       } else {
          alert("Item is already in Wishlist");

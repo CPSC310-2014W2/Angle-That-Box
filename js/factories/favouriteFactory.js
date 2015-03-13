@@ -24,9 +24,12 @@ app.factory('FavouriteFactory', function($firebase, $location)
          favSnap = dataSnapshot;
       });
 
+      //turns name into a valid firebase key
+      var key = name.replace(/\.|\#|\$|\[|\]|\//g, ' ');
+
       //only add if there are no duplicates
-      if (!favSnap.hasChild(name)) {
-         ref.child(name).set({"name":name});
+      if (!favSnap.hasChild(key)) {
+         ref.child(key).set({"name":name});
          alert("Add Successful");
       } else {
          alert("Item is already in Favourites");
