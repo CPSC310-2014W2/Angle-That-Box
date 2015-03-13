@@ -7,8 +7,13 @@
 					<input type="text" class="form-control" ng-model="input">
 				</div>
 				<div class="form-group">
-					<label>Filter</label> 
-					<input type="text" class="form-control" ng-model="search">
+					<label> Filter by name: </label>
+					<input type="text" class="form-control" ng-model="search.CULTURAL_SPACE_NAME">
+					<label> Filter by type:	</label>
+					<select data-ng-model='search.TYPE'
+           			data-ng-options="option.value as option.name for option in filterTypes"
+           			data-ng-init="search.TYPE=''">
+					</select>
 				</div>
 
 				<div>
@@ -26,7 +31,10 @@
 				</div>
 
 				<div class="form-group">
-					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input></button>
+					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder |filter: search"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+					</button>
+					<div ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
+					
 				</div>
 			</form>
 		</div>
