@@ -7,6 +7,7 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.list = factory.getList(); //$scope is the link between view and controller, getList is a function of DashboardFactory
    $scope.markers = []; //storing markers for reference
    $scope.checkboxes = []; //to keep track of which boxes are checked
+   $scope.filterTypes = [{'value': '', 'name': ''}];
 
    //set all checkboxes to false at first, list is initially sorted by name
    $scope.list.$loaded().then(function() {
@@ -25,6 +26,21 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
       $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
    }
    
+   $scope.list.$loaded().then(function(){
+         angular.forEach($scope.list, function(item){
+            var currentItem = {'value': item.TYPE, 'name': item.TYPE};
+            var index = $.grep($scope.filterTypes, 
+               function(e){ 
+                  var valeen = e['value'];
+                  var c =  currentItem['value']
+                  return e['value'] == currentItem['value'];
+                   });
+               if(index.length == 0 )
+                  $scope.filterTypes.push(currentItem);
+         });
+      });
+
+
    $scope.unCheckAll = function() {
    angular.forEach($scope.checkboxes, function (item) {
             item.checked = false;
@@ -56,5 +72,4 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.list.$loaded().then(function() {
       mapFactory.getMapData(map, $scope.list, $scope.markers);
    });
-
 });
