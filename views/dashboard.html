@@ -1,13 +1,18 @@
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#/favourites">Favourites</a></li>
+				<li><a href="#/wishlist">Wishlist</a></li>
+				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 <div class="container-fluid spacing">
 	<div class="row">
 		<div class="col-md-3"> 
-			<form>
-                <div class="form-group">
-                    <a href="#/favourites"><button class="btn btn-primary">Favourites</button></a>
-                    <a href="#/wishlist"><button class="btn btn-primary">Wishlist</button></a>
-                    <button class="btn btn-default" ng-click="logout()">Log out</button>
-                </div>
-                
+			<form>                
 				<div class="form-group">
 					<label>Input</label>
 					<input type="text" class="form-control" ng-model="input">
@@ -15,6 +20,9 @@
 				<div class="form-group">
 					<label> Filter by name: </label>
 					<input type="text" class="form-control" ng-model="search.CULTURAL_SPACE_NAME" ng-change="filtername(search.CULTURAL_SPACE_NAME)">
+				</div>
+
+				<div class="form-group">
 					<label> Filter by type:	</label>
 					<select data-ng-model='search.TYPE'
            			data-ng-options="option.value as option.name for option in filterTypes"
@@ -23,7 +31,7 @@
 					</select>
 				</div>
 
-				<div>
+				<div class="form-group">
 					<label>Order By</label>
 
     				<select data-ng-model='selectedSortOrder' 
@@ -39,14 +47,16 @@
 					<button class="btn btn-default" ng-click="addWishlist()">Add to Wishlist</button>
 				</div>
 
-				<div class="form-group">
-					<button id="panel" class="well" style="text-align:center;width:100%;" ng-repeat="item in list | orderBy:selectedSortOrder |filter: search"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+				<div class="list-group scrollable">
+					<button id="locationsItem" class="list-group-item" ng-repeat="item in list | orderBy:selectedSortOrder |filter: search"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
 					</button>
 					<div ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
-					
 				</div>
 			</form>
 		</div>
-		<div id="map-canvas" style="height:400px; width:750px; margin: 0 auto 0 auto; border:2px solid black;"></div>
+		
 	<div>
+</div>
+<div class="container">
+	<div class="pull-right" id="map-canvas"></div>
 </div>

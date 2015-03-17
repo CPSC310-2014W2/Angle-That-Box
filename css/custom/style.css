@@ -2,7 +2,7 @@
 	background-image:url("http://upload.wikimedia.org/wikipedia/commons/2/27/Vancouver_dusk_pano.jpg");
 	background-position:62% 4%;
 	background-attachment:fixed;
-	min-height:400px;
+	min-height:420px;
 	margin-bottom:0px;
 }
 
@@ -12,4 +12,33 @@
 
 .spacing {
 	margin-top:20px;
+}
+
+.scrollable {
+	max-height:290px;
+	overflow-x:hidden;
+	margin-bottom:0px;
+}
+
+#locationsItem {
+	text-align:center;
+	width:100%;
+	height:75px;
+	border-bottom:2px solid #ddd;
+}
+
+#locationsItem:hover {
+	background-color:#74AFAD;
+	color:white;
+}
+
+.handPointer {
+	cursor:pointer;
+}
+
+#map-canvas {
+	height:400px; 
+	width:800px; 
+	margin:0 auto 0 auto; 
+	border:2px solid black
 }
