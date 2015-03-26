@@ -4,8 +4,11 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#/favourites">Favourites</a></li>
 				<li><a href="#/wishlist">Wishlist</a></li>
+<<<<<<< HEAD
 				<li><a href="#/profile">Profile</a></li>
+=======
 				<li><a href="#/routes">Routes</a></li>
+>>>>>>> Issue #27: First draft of work
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
 			</ul>
 		</div>

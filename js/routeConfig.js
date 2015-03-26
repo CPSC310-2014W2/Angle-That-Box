@@ -43,5 +43,10 @@ app.config(function($routeProvider) {
             templateUrl: "views/favourites.html",
             controller: "FavouriteController"
          }
-   );
+   )
+   .when("/routes",
+      {
+         templateUrl: "views/routes.html",
+         controller: "RoutesController"
+      });
 });

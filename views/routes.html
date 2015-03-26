@@ -1,0 +1,21 @@
+<head>
+	<title>Routes</title>
+</head>
+	<h1 style="text-align:center">Routes</h1>
+	<body>
+			<div align="pull-left" ng-repeat='place in routes'>
+				<span>{{place.name}}</span>
+				<button ng-click="delete($index)">Delete</button>
+			</div>
+
+		<div class="list-group scrollable">
+			<button class="list-group-item" ng-repeat="item in list | filter: routes ">
+				<input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+			</button>
+			<div ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
+		</div>
+		<div class="container">
+				<div class="pull-right" id="map-canvas"></div>
+			</div>
+	</body>
+</html>

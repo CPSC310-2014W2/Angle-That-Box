@@ -6,20 +6,67 @@ app.factory('MapFactory', function($http, $compile)
 	var infowindows = [];
 	var openWindow;
 
+	var directionService = new google.maps.DirectionsService();
+	var directionsDisplay;
 	factory.createMap = function() {
 		var map = new google.maps.Map(document.getElementById('map-canvas'));
+		directionsDisplay = new google.maps.DirectionsRenderer();
 
 		google.maps.event.addListener(map, "click", function(event) {
 		    closeOpenWindows();
 		});
 
+		directionsDisplay.setMap(map);
 		return map;
 	}
 
-	factory.populateMap = function(amap, locationsList) {
-		infowindows = [];
-		var index = 0;
-		var len = locationsList.length-1;
+	factory.createRoute = function(locations){
+		var start = 0;
+		var finish = 0;
+		var path=[];
+		if (locations.length == 2){
+			start = locations[0];
+			finish = locations[locations.length - 1];
+
+			var request = {
+				origin: new google.maps.LatLng(start.LATITIUDE, start.LONGITUDE),
+				destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+
+			directionService.route(request, function(response, status){
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				}
+			});
+		} else if (locations.length > 2){
+			start = locations[0];
+			finish = locations[locations.length - 1];
+
+			for(var i = 1; i < locations.length-2; i++){ //add all the middle elements
+				path.push(
+					{
+    					location: new google.maps.LatLng(locations[i].LATITIUDE, locations[i].LONGITUDE),
+     					stopover:true
+   					}
+				);
+			}
+
+			var request = {
+				origin: new google.maps.LatLng(start.LATITIUDE, start.LONGITUDE),
+				destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
+				waypoints: path,
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+
+			directionService.route(request, function(response, status){
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				}
+			});
+		}
+	}
+
 		var bounds = new google.maps.LatLngBounds(); 
 		while(index <= locationsList.length-1) {
 			var obj = locationsList[index];
@@ -49,6 +96,7 @@ app.factory('MapFactory', function($http, $compile)
 
 		return marker;
 	}
+
 
 	//get website url given a location object
 	function getURL(obj) {
