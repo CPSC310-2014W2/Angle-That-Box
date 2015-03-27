@@ -1,4 +1,4 @@
-app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) { //name is SimpleCtrl, the parameters are dependencies
+app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
 
    var factory = DashboardFactory; //this is an instance of the factory
    var mapFactory = MapFactory;
