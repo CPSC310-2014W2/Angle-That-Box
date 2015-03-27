@@ -26,6 +26,12 @@ app.config(function($routeProvider) {
             controller: "WishlistController"
          }
    )
+   .when("/profile",
+         {
+            templateUrl: "views/profile.html",
+            controller: "ProfileController"
+         }
+   )
    .when("/favourites",
          {
             templateUrl: "views/favourites.html",
