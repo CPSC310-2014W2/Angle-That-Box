@@ -8,6 +8,7 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.markers = []; //storing markers for reference
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
+   $scope.infowindows = [];
 
 
    //set all checkboxes to false at first, list is initially sorted by name
@@ -17,9 +18,12 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
       $scope.checkboxes.push({
          CULTURAL_SPACE_NAME:item.CULTURAL_SPACE_NAME,
          TYPE:item.TYPE,
+         LATITUIDE:item.LATITUIDE,
+         LONGITUDE:item.LONGITUDE,
+         ADDRESS:item.ADDRESS,
+         WEBSITE:item.WEBSITE,
          checked:false});
       });
-      
    });
    
    //sort selections to reflect how they are sorted in the view 
@@ -30,12 +34,18 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtertype = function(searchTYPE) {
+      $scope.checkboxes = $scope.list.slice();
+      mapFactory.clearMarkers($scope.markers);
       $scope.checkboxes = $filter('filter')($scope.checkboxes, searchTYPE);
+      mapFactory.getMapData(map, $scope.checkboxes, $scope.markers);
    }
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtername = function(searchCULTURAL_SPACE_NAME) {
+      $scope.checkboxes = $scope.list.slice();
+      mapFactory.clearMarkers($scope.markers);
       $scope.checkboxes = $filter('filter')($scope.checkboxes, searchCULTURAL_SPACE_NAME);
+      mapFactory.getMapData(map, $scope.checkboxes, $scope.markers);
    }
    
    $scope.list.$loaded().then(function(){
@@ -84,4 +94,8 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.list.$loaded().then(function() {
       mapFactory.getMapData(map, $scope.list, $scope.markers);
    });
+
+   $scope.openInfoWindow = function(index) {
+      mapFactory.openWindow(index, map, $scope.markers);
+   }
 });

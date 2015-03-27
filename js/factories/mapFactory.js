@@ -2,9 +2,13 @@ app.factory('MapFactory', function($http, $compile)
 {
 	var factory = {};
 	var reg = /http/;
-	var openwindows = [];
+	var infowindows = [];
+	var openWindow;
 
 	factory.createMap = function() {
+		// var mapOptions = {
+		//     maxZoom: 16,
+		// };
 		var map = new google.maps.Map(document.getElementById('map-canvas'));
 
 		google.maps.event.addListener(map, "click", function(event) {
@@ -15,13 +19,15 @@ app.factory('MapFactory', function($http, $compile)
 	}
 
 	factory.getMapData = function(amap, inputlist, markers) {
+		infowindows = [];
+		var index = 0;
 		var len = inputlist.length-1;
 		var bounds = new google.maps.LatLngBounds(); 
-		while(len >= 0) {
-			var obj = inputlist[len];
+		while(index <= inputlist.length-1) {
+			var obj = inputlist[index];
 			bounds.extend(new google.maps.LatLng(obj.LATITIUDE, obj.LONGITUDE));
 			markers.push(createMarker(obj, amap, len));
-			len--;
+			index++;
 		}
 		amap.fitBounds(bounds);
 	}
@@ -33,13 +39,14 @@ app.factory('MapFactory', function($http, $compile)
 		    index: ind //storing the index for future reference
 		});
 
-		var infowindow = new google.maps.InfoWindow({ 
-	    });
+		var infowindow = new google.maps.InfoWindow({});
+		infowindow.setContent(getContentString(obj));
+		infowindows.push(infowindow);
 
 		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent(getContentString(obj));
 			infowindow.open(amap, marker);
-			openwindows.push(infowindow);
+			closeOpenWindows();
+			openWindow = infowindow;
 		});
 
 		return marker;
@@ -60,10 +67,24 @@ app.factory('MapFactory', function($http, $compile)
 	}
 
 	function closeOpenWindows() {
-		for (var i = 0; i < openwindows.length; i++ ) {
-	        openwindows[i].close();
+		if(openWindow != undefined) {
+		    	openWindow.close();
 		}
-		openwindows = [];
+	}
+
+	factory.openWindow = function(index, amap, markers) {
+		infowindows[index].open(amap, markers[index]);
+		closeOpenWindows();
+		openWindow = infowindows[index];
+	}
+
+	factory.clearMarkers = function(markers) {
+		var i = 0;
+	      while(i < markers.length) {
+	         markers[i].setMap(null);
+	         i++;
+	      }
+	      markers = [];
 	}
 
 	return factory;
