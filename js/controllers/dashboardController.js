@@ -4,11 +4,9 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    var mapFactory = MapFactory;
    var fFactory = FavouriteFactory;
    var wFactory = WishlistFactory;
-   $scope.list = factory.getList(); //$scope is the link between view and controller, getList is a function of DashboardFactory
-   $scope.markers = []; //storing markers for reference
+   $scope.list = factory.getList();
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
-   $scope.infowindows = [];
 
 
    //set all checkboxes to false at first, list is initially sorted by name
@@ -34,18 +32,20 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtertype = function(searchTYPE) {
-      $scope.checkboxes = $scope.list.slice();
-      mapFactory.clearMarkers($scope.markers);
-      $scope.checkboxes = $filter('filter')($scope.checkboxes, searchTYPE);
-      mapFactory.getMapData(map, $scope.checkboxes, $scope.markers);
+      $scope.search.CULTURAL_SPACE_NAME = "";
+      filterLocations(searchTYPE);
    }
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtername = function(searchCULTURAL_SPACE_NAME) {
+      filterLocations(searchCULTURAL_SPACE_NAME);
+   }
+
+   var filterLocations = function(type) {
       $scope.checkboxes = $scope.list.slice();
-      mapFactory.clearMarkers($scope.markers);
-      $scope.checkboxes = $filter('filter')($scope.checkboxes, searchCULTURAL_SPACE_NAME);
-      mapFactory.getMapData(map, $scope.checkboxes, $scope.markers);
+      mapFactory.clearMarkers();
+      $scope.checkboxes = $filter('filter')($scope.checkboxes, type);
+      mapFactory.populateMap(map, $scope.checkboxes);
    }
    
    $scope.list.$loaded().then(function(){
@@ -89,13 +89,14 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
 	   factory.logout();
    }
 
+   //Create and populate map
    var map = mapFactory.createMap();
-
    $scope.list.$loaded().then(function() {
-      mapFactory.getMapData(map, $scope.list, $scope.markers);
+      mapFactory.populateMap(map, $scope.list);
    });
 
+   //Open info window of location when item in locations list is clicked
    $scope.openInfoWindow = function(index) {
-      mapFactory.openWindow(index, map, $scope.markers);
+      mapFactory.openWindow(index, map);
    }
 });
