@@ -1,4 +1,4 @@
-app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
+app.controller('DashboardCtrl', function($scope, $filter, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
 
    var factory = DashboardFactory; //this is an instance of the factory
    var mapFactory = MapFactory;
@@ -7,7 +7,6 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.list = factory.getList();
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
-
 
    //set all checkboxes to false at first, list is initially sorted by name
    $scope.list.$loaded().then(function() {
@@ -28,7 +27,6 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
    $scope.sort = function(selectedSortOrder) {
       $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
    }
-
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtertype = function(searchTYPE) {
@@ -62,9 +60,8 @@ app.controller('DashboardCtrl', function($scope, $http, $firebase, $filter, Dash
          });
       });
 
-
    $scope.unCheckAll = function() {
-   angular.forEach($scope.checkboxes, function (item) {
+      angular.forEach($scope.checkboxes, function (item) {
             item.checked = false;
         });
    }
