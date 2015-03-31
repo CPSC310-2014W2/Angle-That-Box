@@ -32,6 +32,12 @@ app.config(function($routeProvider) {
             controller: "ProfileController"
          }
    )
+   .when("/edit",
+         {
+            templateUrl: "views/edit.html",
+            controller: "EditController"
+         }
+   )
    .when("/favourites",
          {
             templateUrl: "views/favourites.html",
