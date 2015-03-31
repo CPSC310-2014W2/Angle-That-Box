@@ -1,4 +1,4 @@
-app.controller('LoggedOutCtrl', function($scope, $firebase, CreateAccountFactory, LoginFactory) {
+app.controller('LoggedOutCtrl', function($scope, CreateAccountFactory, LoginFactory) {
    var loginFactory = LoginFactory;
    var createAcctFactory = CreateAccountFactory;
 

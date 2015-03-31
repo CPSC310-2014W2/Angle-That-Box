@@ -1,4 +1,4 @@
-app.factory('CreateAccountFactory', function($firebase, $location)
+app.factory('CreateAccountFactory', function($location)
 {
    var factory = {};
    var url = "https://angle-that-box.firebaseio.com/users";

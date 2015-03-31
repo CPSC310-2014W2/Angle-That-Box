@@ -17,7 +17,7 @@ app.config(function($routeProvider) {
    .when("/createAccount",
          {
             templateUrl: "views/createAccount.html",
-            controller: "UserAccountCtrl"
+            controller: "LoggedOutCtrl"
          }
    )
    .when("/wishlist",
