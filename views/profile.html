@@ -30,6 +30,7 @@
 					
 				</div>
 		</section>	
+
 		<section id="left"
 				<div ng-model="userData">
 					<h3>{{userData.name}}</h3>
@@ -38,6 +39,16 @@
 					<h4>Bio:</h4>
 					<p>{{userData.bio}}</p>
 				</div>
+
+		<section id="left">
+			<div ng-model="userData">
+				<h3>{{userData.name}}</h3>
+				<h5>Birthday: {{userData.birthdate}}</h5>
+				<h5>{{userData.location}}</h5>
+				<h4 ng-model="user.bio">Bio:</h4>
+				<p>{{userData.bio}}</p>
+			</div>
+
 
 		</section>
 		

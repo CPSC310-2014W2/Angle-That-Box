@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
    .when("/",
          {
             templateUrl: "views/main.html",
-            controller: "UserAccountCtrl"
+            controller: "LoggedOutCtrl"
          }
       )
    .when("/dashboard",
@@ -17,7 +17,7 @@ app.config(function($routeProvider) {
    .when("/createAccount",
          {
             templateUrl: "views/createAccount.html",
-            controller: "UserAccountCtrl"
+            controller: "LoggedOutCtrl"
          }
    )
    .when("/wishlist",

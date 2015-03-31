@@ -1,5 +1,8 @@
-app.controller('DashboardCtrl', function($scope, $filter, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
+app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
 
+   var authFactory = AuthFactory;
+   authFactory.verifyAuthenticated();
+   
    var factory = DashboardFactory; //this is an instance of the factory
    var mapFactory = MapFactory;
    var fFactory = FavouriteFactory;
@@ -82,10 +85,6 @@ app.controller('DashboardCtrl', function($scope, $filter, DashboardFactory, MapF
       $scope.unCheckAll();
    }
 
-   $scope.logout = function() {
-	   factory.logout();
-   }
-
    //Create and populate map
    var map = mapFactory.createMap();
    $scope.list.$loaded().then(function() {
@@ -95,5 +94,9 @@ app.controller('DashboardCtrl', function($scope, $filter, DashboardFactory, MapF
    //Open info window of location when item in locations list is clicked
    $scope.openInfoWindow = function(index) {
       mapFactory.openWindow(index, map);
+   }
+
+   $scope.logout = function() {
+      authFactory.logout();
    }
 });
