@@ -19,7 +19,7 @@
 		<ul id="n" class="clearfix">
 			<li><a href="#/dashboard">Dashboard</a></li>
 			<li><a href="#/settings">Settings</a></li>
-			<li><a href="#/editprofile">Edit Profile</a></li>
+			<li><a href="#/edit">Edit Profile</a></li>
 		</ul>
 	</nav>
 	
@@ -29,18 +29,20 @@
 				<div class="pic">
 					<img src="http://christinenovosel.com/files/gimgs/46_dog_patterned_bkg_v2.jpg" width="150" height="150" />
 					<br><br>
-					<button class="btn btn-default">Upload Photo</button>
+					<a href="#" class="btn btn-default" type="button" onclick="document.getElementById('fileID').click(); return false;">Upload Photo</a> <input id="fileID" type="file" style="visibility: hidden; display: none;" accept="image/*" /> 
 					
 				</div>
 		</section>	
+
 		<section id="left">
 				<div ng-model="userData">
 					<h3>{{userData.name}}</h3>
 					<h5>Birthday: {{userData.birthdate}}</h5>
 					<h5>{{userData.location}}</h5>
-					<h4 ng-model="user.bio">Bio:</h4>
+					<h4>Bio:</h4>
 					<p>{{userData.bio}}</p>
 				</div>
+
 
 		</section>
 		

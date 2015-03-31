@@ -1,4 +1,4 @@
-app.factory('ProfileFactory', function($firebase, $location)
+app.factory('EditFactory', function($firebase, $location)
 {
    var factory = {};
 
@@ -14,6 +14,18 @@ app.factory('ProfileFactory', function($firebase, $location)
    factory.getUserData = function() {
       return userData;
    };
+
+   factory.saveName = function(name) {
+      ref.child("name").set(name);
+   }
+
+   factory.saveLocation = function(location) {
+      ref.child("location").set(location);
+   }
+
+   factory.saveBio = function(bio) {
+      ref.child("bio").set(bio);
+   }
 
    return factory;
 })

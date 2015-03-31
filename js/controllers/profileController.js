@@ -1,7 +1,15 @@
-app.controller("ProfileController", function($scope, $firebase, ProfileFactory) {
+app.controller("ProfileController", function($scope, $firebase, AuthFactory, ProfileFactory) {
 
-  var factory = ProfileFactory; 
-  $scope.userData = factory.getUserData();
-  
-  }
-);
+
+   var authFactory = AuthFactory;
+   authFactory.verifyAuthenticated();
+
+   var factory = ProfileFactory; 
+   $scope.userData = factory.getUserData();
+
+   $scope.logout = function() {
+      authFactory.logout();
+   }
+
+});
+
