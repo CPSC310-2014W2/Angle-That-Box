@@ -4,6 +4,9 @@
 	<div class="container">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<div class="pull-left" id="list">
+					<li><font id="navHeader">Outinglicious</font></li>
+				</div>
 				<li><a href="#/wishlist">Wishlist</a></li>
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
 			</ul>
@@ -30,7 +33,7 @@
 					
 				</div>
 		</section>	
-		<section id="left"
+		<section id="left">
 				<div ng-model="userData">
 					<h3>{{userData.name}}</h3>
 					<h5>Birthday: {{userData.birthdate}}</h5>

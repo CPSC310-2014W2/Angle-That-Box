@@ -37,8 +37,44 @@
 }
 
 #map-canvas {
-	height:400px; 
-	width:800px; 
+	height:350px; 
+	width:750px; 
 	margin:0 auto 0 auto; 
 	border:2px solid black
+}
+
+#list li:first-child {
+    position: absolute;
+    left: 10px;
+    top: 0
+}
+
+#quoteContent {
+	background: url(http://www.brainyquote.com/st/img/1108473/quotes.png) no-repeat scroll 5px -2px yellow;
+	border: 0;
+	box-shadow: 5px 10px 5px ;
+}
+
+#box {
+	border-color: #f0f0f0 #ececec #dfdfdf;
+  	border-radius: 5px 5px 5px 5px;
+  	border-style: solid;
+  	border-width: 1px;
+  	font-size: 140%;
+  	/*box-shadow: 0 1px 3px #ccc;*/
+}
+
+#personQuoted {
+	margin-right: 0.5cm;
+}
+
+#navHeader {
+	font-family: Brush Script MT;
+	font-size: 350%; 
+	color: turquoise;
+}
+
+#quote {
+	font-style: italic;
+	font-weight: normal;
 }
