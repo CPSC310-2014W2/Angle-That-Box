@@ -8,12 +8,6 @@ app.factory('DashboardFactory', function($firebase, $location)
    factory.getList = function() {
       return listOfItems;
    };
-   
-   factory.logout = function() {
-      console.log("Logging out");
-      ref.unauth();
-      $location.path("/");
-   }
 
    return factory;
 })
