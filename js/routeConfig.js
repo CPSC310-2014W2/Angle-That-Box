@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
    .when("/",
          {
             templateUrl: "views/main.html",
-            controller: "UserAccountCtrl"
+            controller: "LoggedOutCtrl"
          }
       )
    .when("/dashboard",

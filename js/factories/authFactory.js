@@ -1,7 +1,7 @@
 app.factory('AuthFactory', function($firebase, $location)
 {
    var factory = {};
-   var url = "https://angle-that-box.firebaseio.com";
+   var url = "https://angle-that-box.firebaseio.com/users";
    var ref = new Firebase(url);
    
    factory.verifyAuthenticated = function() {
