@@ -101,22 +101,33 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
    }
 
    $scope.share = function() {
-      FB.ui(
-         {
-            method: 'feed',
-            name: 'name',
-            link: 'google.ca',
-            caption: "caption",
-            description: 'description',
-         },
-            function(response) {
-               if (response && response.post_id) {
-                  alert('Post was published.');
-               } else {
-                  alert('Post was not published.');
-            }
+      var openWindow = mapFactory.getSelectedMarker();
+      if (openWindow == undefined) {
+         alert("Please select a location marker before sharing")
+      } else {
+         var loc = $scope.checkboxes[openWindow.index];
+         var website = loc.WEBSITE;
+         if (website == "") {
+            website = "google.ca" //to be replaced with firebase url
          }
-      );  
+         FB.ui(
+            {
+               method: 'feed',
+               name: loc.CULTURAL_SPACE_NAME,
+               link: website,
+               caption: loc.CULTURAL_SPACE_NAME,
+               description: 'Checkout this cultural space I found from Outinglicious',
+            },
+               function(response) {
+                  if (response && response.post_id) {
+                     alert('Post was published.');
+                  } else {
+                     alert('Post was not published.');
+               }
+            }
+         );  
+      }
+      
    }
 
 });
