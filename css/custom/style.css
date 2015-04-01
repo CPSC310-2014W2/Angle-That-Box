@@ -37,9 +37,8 @@
 }
 
 #map-canvas {
-	height:350px; 
+	height:400px; 
 	width:750px; 
-	margin:0 auto 0 auto; 
 	border:2px solid black
 }
 

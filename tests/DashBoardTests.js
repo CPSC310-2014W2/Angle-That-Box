@@ -19,33 +19,33 @@
 
   });
 
-  describe('dashboardFactory', function(){
+  // describe('dashboardFactory', function(){
 
-  	beforeEach(angular.mock.module('app'));
+  // 	beforeEach(angular.mock.module('app'));
 
-  	it('check list', angular.mock.inject(function($injector) {
-  		var factory = $injector.get('DashboardFactory');
+  // 	it('check list', angular.mock.inject(function($injector) {
+  // 		var factory = $injector.get('DashboardFactory');
 
-     expect(factory.getList().length).toBe(0);
-   }));
+  //    expect(factory.getList().length).toBe(0);
+  //  }));
 
-    describe('$scope.sort', function() {
+  //   describe('$scope.sort', function() {
 
-      it('sort a list of items A-Z', fucntion(){
-        var $scope = {};
-        ctrl = $controller('dashboardController', {$scope:scope});
-        var $originalList = $scope.checkboxes;
-        // $scope.list = //reference a json object with 3 entries in it
-        $scope.checkboxes = shuffle($scope.checkboxes);
+  //     it('sort a list of items A-Z', angular.mock.inject(function($controller, $injector){
+  //       var $scope = {};
+  //       ctrl = $controller('dashboardController', {$scope:scope});
+  //       var $originalList = $scope.checkboxes;
+  //       // $scope.list = //reference a json object with 3 entries in it
+  //       $scope.checkboxes = shuffle($scope.checkboxes);
 
-        $scope.sort('+CULTURAL_SPACE_NAME');
-        var $result = $scope.checkboxes;
-        expect($originalList).toEqual($result);
-      })
+  //       $scope.sort('+CULTURAL_SPACE_NAME');
+  //       var $result = $scope.checkboxes;
+  //       expect($originalList).toEqual($result);
+  //     })
 
-    })
+  //   })
 
-  })
+  // })
 
   function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex ;

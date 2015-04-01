@@ -60,13 +60,16 @@
 </div>
 <div class="container">
 	<div class="pull-right" id="map-canvas"></div>
-		<div class="col-md-3">
+<!-- 		<div class="col-md-3">
 			<div class="pull-right" id="quoteContent">
 				<p style="text-align:center;" id="quote"><q id="box">Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q>
 					<br>
 					<div style="text-align:right;" id="personQuoted"><strong>- Douglas Coupland</strong></div>
 				</p>
 			</div>
-		</div>
-<button ng-click="share()" class="btn btn-default pull-right spacing">Share</button>
+		</div> -->
+</div>
+<div class="container">
+	<button class="btn btn-default pull-right" ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
+	<button ng-click="share('fbPost')" style="margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
 </div>
