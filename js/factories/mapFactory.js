@@ -5,18 +5,23 @@ app.factory('MapFactory', function($http, $compile)
 	var markers = [];
 	var infowindows = [];
 	var openWindow;
+	var selectedMarker;
 
 	factory.createMap = function() {
 		var map = new google.maps.Map(document.getElementById('map-canvas'));
 
 		google.maps.event.addListener(map, "click", function(event) {
 		    closeOpenWindows();
+		    openWindow = undefined;
+		    selectedMarker = undefined;
 		});
 
 		return map;
 	}
 
 	factory.populateMap = function(amap, locationsList) {
+		openWindow = undefined;
+		selectedMarker = undefined;
 		infowindows = [];
 		var index = 0;
 		var len = locationsList.length-1;
@@ -24,7 +29,7 @@ app.factory('MapFactory', function($http, $compile)
 		while(index <= locationsList.length-1) {
 			var obj = locationsList[index];
 			bounds.extend(new google.maps.LatLng(obj.LATITIUDE, obj.LONGITUDE));
-			markers.push(createMarker(obj, amap, len));
+			markers.push(createMarker(obj, amap, index));
 			index++;
 		}
 		amap.fitBounds(bounds);
@@ -45,6 +50,7 @@ app.factory('MapFactory', function($http, $compile)
 			infowindow.open(amap, marker);
 			closeOpenWindows();
 			openWindow = infowindow;
+			selectedMarker = marker;
 		});
 
 		return marker;
@@ -75,6 +81,7 @@ app.factory('MapFactory', function($http, $compile)
 		infowindows[index].open(amap, markers[index]);
 		closeOpenWindows();
 		openWindow = infowindows[index];
+		selectedMarker = markers[index];
 	}
 
 	factory.clearMarkers = function() {
@@ -84,6 +91,10 @@ app.factory('MapFactory', function($http, $compile)
 	         i++;
 	      }
 	      markers = [];
+	}
+
+	factory.getSelectedMarker = function() {
+		return selectedMarker;
 	}
 
 	return factory;

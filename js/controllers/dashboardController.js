@@ -99,4 +99,54 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
    $scope.logout = function() {
       authFactory.logout();
    }
+
+   
+
+   $scope.share = function(type) {
+      var openWindow = mapFactory.getSelectedMarker();
+      if (openWindow == undefined) {
+         alert("Please select a location marker before sharing")
+      } else {
+         var loc = $scope.checkboxes[openWindow.index];
+
+         if (type == "fbPost") {
+            fbPost(loc);
+         } else if (type == "tweet") {
+            tweet(loc);
+         }
+           
+      }
+      
+   }
+
+   var tweet = function(loc) {
+      var url = "https://twitter.com/share?url=google.com&text=" + "Check out this cultural space " + loc.CULTURAL_SPACE_NAME + 
+      " " + loc.WEBSITE;
+      window.open(url);
+   }
+
+   var fbPost = function(loc) {
+      var website = loc.WEBSITE;
+         if (website == "") {
+            website = "google.ca" //to be replaced with firebase url
+         }
+
+      FB.ui(
+            {
+               method: 'feed',
+               name: loc.CULTURAL_SPACE_NAME,
+               link: website,
+               caption: loc.CULTURAL_SPACE_NAME,
+               description: 'Check out this cultural space I found from Outinglicious',
+            },
+               function(response) {
+                  if (response && response.post_id) {
+                     alert('Post was published.');
+                  } else {
+                     alert('Post was not published.');
+               }
+            }
+         );
+   }
+
 });
