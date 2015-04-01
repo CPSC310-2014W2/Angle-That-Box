@@ -99,4 +99,24 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
    $scope.logout = function() {
       authFactory.logout();
    }
+
+   $scope.share = function() {
+      FB.ui(
+         {
+            method: 'feed',
+            name: 'name',
+            link: 'google.ca',
+            caption: "caption",
+            description: 'description',
+         },
+            function(response) {
+               if (response && response.post_id) {
+                  alert('Post was published.');
+               } else {
+                  alert('Post was not published.');
+            }
+         }
+      );  
+   }
+
 });
