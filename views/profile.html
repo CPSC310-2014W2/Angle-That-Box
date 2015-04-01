@@ -27,9 +27,11 @@
 		<section id="right">
 			<div id="userStats" class="clearfix">
 				<div class="pic">
-					<img src="http://christinenovosel.com/files/gimgs/46_dog_patterned_bkg_v2.jpg" width="150" height="150" />
+					<!-- no profile picture is an empty gray box -->
+					<img id ="imageID" src="http://www.schofieldstone.com/img/pictemp.gif" width="150" height="150" />
 					<br><br>
-					<a href="#" class="btn btn-default" type="button" onclick="document.getElementById('fileID').click(); return false;">Upload Photo</a> <input id="fileID" type="file" style="visibility: hidden; display: none;" accept="image/*" /> 
+					<!-- turning standard "Choose File" into "Upload Photo" button. Using onchange because ng-change/ng-model cannot bind to input type file. angular.element is alias for jQuery. This is passed to uplaodPhoto so we can get all the image info-->
+					<a href="#" class="btn btn-default" type="button" onclick="document.getElementById('fileID').click(); return false;">Upload Photo</a> <input id="fileID" type="file" style="visibility: hidden; display: none;" accept="image/*" onchange="angular.element(this).scope().uploadPhoto(this)" />
 					
 				</div>
 		</section>	
