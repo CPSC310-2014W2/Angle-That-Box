@@ -10,12 +10,16 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
    //after getting the userData show either their pic or the default pic if they don't have one uploaded
    $scope.userData.$loaded().then(function() {
       $scope.profilePhoto = factory.getPhoto();
+      factory.convertBirthday();
+      factory.getUserData();
    });
 
 
    $scope.logout = function () {
       authFactory.logout();
    }
+
+
 
    $scope.uploadPhoto = function (selectedFile) {
      // set to false so ng-hide on img element shows the uploaded picture

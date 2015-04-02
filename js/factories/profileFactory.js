@@ -15,6 +15,31 @@ app.factory('ProfileFactory', function($firebase, $location)
       return userData;
    };
 
+   factory.convertBirthday = function () {
+      var bday = new Date(userData.birthdate);
+      var year = bday.getFullYear();
+
+      var month = new Array();
+         month[0] = "January";
+         month[1] = "February";
+         month[2] = "March";
+         month[3] = "April";
+         month[4] = "May";
+         month[5] = "June";
+         month[6] = "July";
+         month[7] = "August";
+         month[8] = "September";
+         month[9] = "October";
+         month[10] = "November";
+         month[11] = "December";
+
+      var monthFull = month[bday.getMonth()];
+      var day = bday.getDate();
+      userData.birthdate = (monthFull +" "+ day +" "+ year);
+
+      ref.child("birthdate").set(userData.birthdate);
+   }
+
    factory.savePhoto = function(photo) {
       ref.child("photo").set(photo);
    };
@@ -36,8 +61,7 @@ app.factory('ProfileFactory', function($firebase, $location)
    };
 
    factory.delete = function () {
-      picref = new Firebase(ref + "/photo");
-      picref.remove();
+      ref.child("photo").remove();
    }
 
    return factory;
