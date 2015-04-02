@@ -1,14 +1,14 @@
 <nav class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
 		<div class="navbar-collapse collapse">
-			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<div class="pull-left" id="list">
-					<li id="list"><font id="navHeader">Outinglicious</font></li>
-				</div>
 				<li><a href="#/favourites">Favourites</a></li>
+				<li><a href="#/wishlist">Wishlist</a></li>
+<<<<<<< HEAD
 				<li><a href="#/profile">Profile</a></li>
+=======
 				<li><a href="#/routes">Routes</a></li>
+>>>>>>> Issue #27: First draft of work
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
 			</ul>
 		</div>
@@ -16,7 +16,7 @@
 </nav>
 <div class="container-fluid spacing">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<form>
 				<div class="form-group">
 					<label> Filter by name: </label>
@@ -45,13 +45,11 @@
 			     <!-- ng-click calls methods from the controller whenever the button is clicked-->
 			    <div class="form-group">
 					<button class="btn btn-default" ng-click="addFavourites()">Add to Favourites</button>
-					<button class="btn btn-default" ng-click="addRoute()">Add to Route</button>
+					<button class="btn btn-default" ng-click="addWishlist()">Add to Wishlist</button>
 				</div>
 
 				<div class="list-group scrollable">
 					<button id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
-						<span class="pull-right"><div class="heart"></div></span>
-						
 					</button>
 					<div ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
 				</div>
@@ -62,16 +60,4 @@
 </div>
 <div class="container">
 	<div class="pull-right" id="map-canvas"></div>
-<!-- 		<div class="col-md-3">
-			<div class="pull-right" id="quoteContent">
-				<p style="text-align:center;" id="quote"><q id="box">Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q>
-					<br>
-					<div style="text-align:right;" id="personQuoted"><strong>- Douglas Coupland</strong></div>
-				</p>
-			</div>
-		</div> -->
-</div>
-<div class="container">
-	<button class="btn btn-default pull-right" ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
-	<button ng-click="share('fbPost')" style="margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
 </div>
