@@ -7,6 +7,7 @@
 				<div class="pull-left" id="list">
 					<li><font id="navHeader">Outinglicious</font></li>
 				</div>
+				<li><a href="#/dashboard">Dashboard</a></li>
 				<li><a href="#/wishlist">Wishlist</a></li>
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
 			</ul>
@@ -14,14 +15,14 @@
 	</div>
 </nav>
 	</header>
-	
+	<div>
 	<nav>
 		<ul id="n" class="clearfix">
-			<li><a href="#/dashboard">Dashboard</a></li>
-			<li><a href="#/settings">Settings</a></li>
-			<li><a href="#/edit">Edit Profile</a></li>
+			<li><a class="btn btn-default" href="#/settings" role="button">Settings</a></li>
+			<li><a class="btn btn-default" href="#/edit" role="button">Edit Profile</a></li>
 		</ul>
 	</nav>
+	</div>
 	
 	<div id="content" class="clearfix">
 		<section id="right">
@@ -48,7 +49,7 @@
 					<h3>{{userData.name}}</h3>
 					<h5>Birthday: {{userData.birthdate}}</h5>
 					<h5>{{userData.location}}</h5>
-					<h4>Bio:</h4>
+					<h5>Bio:</h5>
 					<p>{{userData.bio}}</p>
 				</div>
 

@@ -1,10 +1,17 @@
-app.controller("EditController", function($scope, $firebase, EditFactory) {
+app.controller("EditController", function($scope, $firebase, AuthFactory, EditFactory) {
+
+  var authFactory = AuthFactory;
+  authFactory.verifyAuthenticated();
 
   var factory = EditFactory; 
   $scope.userData = factory.getUserData();
   $scope.name;
   $scope.location;
   $scope.bio;
+
+  $scope.logout = function () {
+    authFactory.logout();
+   }
 
   $scope.updateName = function (name) {
   	$scope.name = name;

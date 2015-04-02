@@ -16,15 +16,17 @@
 /* @group navigation */
 nav { width: auto; background: #eee; height: 45px; border-bottom: 1px solid #dadada; margin-bottom: 30px; }
 
-ul#n { width: 850px; margin: 0 auto; display: block; list-style: none; }
-ul#n li { float: left; line-height: 45px; border: 3px solid #eee; border-top: 0px; border-bottom: 0px; }
-ul#n li a { display: block; padding: 0 11px; color: #969696; font-size: 15px; font-weight: bold; text-shadow: 0px 1px 1px #fff; }
-
-ul#n li.sel { background: #b4e127; border: 3px solid #c1ff00; border-top: 0px; border-bottom: 0px; }
-ul#n li.sel a { color: #fff; text-shadow: 0px 1px 2px #88b618; }
+ul#n { padding-right: 100px;margin: 0 auto; display: block; list-style: none; }
+ul#n li {  display: inline; float: right; line-height: 45px; border: 5px solid #eee; border-top: 0px; border-bottom: 0px;}
 
 .navbar {
 	margin:0;
+}
+
+.border {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .spacing {
