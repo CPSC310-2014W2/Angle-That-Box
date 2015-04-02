@@ -5,28 +5,38 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 	var mapFactory = MapFactory; 
 
 	$scope.routes = rfactory.getRoutes();
-	$scope.list = factory.getList(); //$scope is the link between view and controller, getList is a function of DashboardFactory
-
-
-
+	$scope.orderSelect = [];
+	$scope.routeOrder = [];
 	$scope.markers = []; //storing markers for reference
+
+
+	$scope.routes.$loaded().then(function(){
+		$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
+	})
+
+	$scope.list = factory.getList(); 
 
 
 	var map = mapFactory.createMap();
 	$scope.list.$loaded().then(function() {
-		var routeToRoute = RoutesFactory.getTheRoute($scope.list, $scope.routes);/*.then(function(retArray){
-			mapFactory.createRoute(itemsToRoute);
-		});*/
+      mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routes));
+  	});
+
+
+	$scope.createRoute = function() {
+		$scope.list.$loaded().then(function() {
+		var routeToRoute = RoutesFactory.getTheRouteSorted($scope.list, $scope.routes);
+		mapFactory.clearMarkers();
 		mapFactory.createRoute(routeToRoute);
 	});
 
-/*	$scope.list.$loaded().then(function() {
-		var lister = [$scope.list[0], $scope.list[$scope.list.length -1]];
-		mapFactory.getMapData(map, lister, $scope.markers);
-	});
-*/
-	    
-	$scope.delete = function(index) {
-		$scope.routes.$remove(index);
 	}
+	$scope.selectAction = function(element) {
+		var elmental = element;
+		for (var i = 0; i < 10; i++)
+		{
+			var apples = 1;
+		}
+	}
+
 });

@@ -33,7 +33,7 @@ app.factory('MapFactory', function($http, $compile)
 				destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
 				travelMode: google.maps.TravelMode.DRIVING
 			};
-
+			
 			directionService.route(request, function(response, status){
 				if (status == google.maps.DirectionsStatus.OK) {
 					directionsDisplay.setDirections(response);
@@ -43,7 +43,7 @@ app.factory('MapFactory', function($http, $compile)
 			start = locations[0];
 			finish = locations[locations.length - 1];
 
-			for(var i = 1; i < locations.length-2; i++){ //add all the middle elements
+			for(var i = 1; i < locations.length-1; i++){ //add all the middle elements
 				path.push(
 					{
     					location: new google.maps.LatLng(locations[i].LATITIUDE, locations[i].LONGITUDE),
@@ -67,6 +67,11 @@ app.factory('MapFactory', function($http, $compile)
 		}
 	}
 
+
+    factory.populateMap = function(amap, locationsList) {
+        infowindows = [];
+        var index = 0;
+        var len = locationsList.length-1;
 		var bounds = new google.maps.LatLngBounds(); 
 		while(index <= locationsList.length-1) {
 			var obj = locationsList[index];

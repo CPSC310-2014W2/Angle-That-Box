@@ -1,4 +1,4 @@
-app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
+app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, DashboardFactory, MapFactory, RoutesFactory, FavouriteFactory) {
 
    var authFactory = AuthFactory;
    authFactory.verifyAuthenticated();
@@ -6,7 +6,7 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
    var factory = DashboardFactory; //this is an instance of the factory
    var mapFactory = MapFactory;
    var fFactory = FavouriteFactory;
-   var wFactory = WishlistFactory;
+   var rFactory = RoutesFactory;
    $scope.list = factory.getList();
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
@@ -77,10 +77,10 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
       $scope.unCheckAll();
    }
 
-   $scope.addWishlist = function() { 
+   $scope.addRoute = function() { 
        angular.forEach($scope.checkboxes, function (item) {
          if (item.checked) 
-            wFactory.add(item);
+            rFactory.add(item);
       });
       $scope.unCheckAll();
    }
