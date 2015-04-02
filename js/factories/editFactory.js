@@ -17,15 +17,15 @@ app.factory('EditFactory', function($firebase, $location)
 
    factory.saveName = function(name) {
       ref.child("name").set(name);
-   }
+   };
 
    factory.saveLocation = function(location) {
       ref.child("location").set(location);
-   }
+   };
 
    factory.saveBio = function(bio) {
       ref.child("bio").set(bio);
-   }
+   };
 
    return factory;
 })

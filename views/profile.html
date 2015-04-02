@@ -27,11 +27,18 @@
 		<section id="right">
 			<div id="userStats" class="clearfix">
 				<div class="pic">
-					<!-- no profile picture is an empty gray box -->
-					<img id ="imageID" src="http://www.schofieldstone.com/img/pictemp.gif" width="150" height="150" />
+					<!-- no profile picture is an empty gray box, only show this if the user doesn't have a pic-->
+					<img id="default" src="http://mountpisgah.org/wp-content/uploads/2014/11/default-profile-picture.jpg" ng-show="profilePhoto" class="ng-hide" >
+					<!--only show this if they have a pic-->
+					<img id ="imageID" src="{{userData.photo}}" width="150" height="150" ng-hide="profilePhoto"/>
 					<br><br>
 					<!-- turning standard "Choose File" into "Upload Photo" button. Using onchange because ng-change/ng-model cannot bind to input type file. angular.element is alias for jQuery. This is passed to uplaodPhoto so we can get all the image info-->
 					<a href="#" class="btn btn-default" type="button" onclick="document.getElementById('fileID').click(); return false;">Upload Photo</a> <input id="fileID" type="file" style="visibility: hidden; display: none;" accept="image/*" onchange="angular.element(this).scope().uploadPhoto(this)" />
+					<!--only show remove button if there's a pic to remove -->
+					<button type="button" class="btn btn-default" ng-hide="profilePhoto" ng-click="deletePhoto()">
+         				<span class="glyphicon glyphicon-remove"></span> 
+        			</button>
+					
 					
 				</div>
 		</section>	

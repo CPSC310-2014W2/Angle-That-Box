@@ -15,5 +15,30 @@ app.factory('ProfileFactory', function($firebase, $location)
       return userData;
    };
 
+   factory.savePhoto = function(photo) {
+      ref.child("photo").set(photo);
+   };
+
+   factory.getPhoto = function () {
+      var userSnap;
+      
+      ref.once('value', function(dataSnapshot) {
+         userSnap = dataSnapshot;
+      });
+
+      //if there is no profile picture uploaded then show the default
+      if (!userSnap.hasChild("photo")) {
+            return true;
+         } else { 
+            return false; 
+         }
+
+   };
+
+   factory.delete = function () {
+      picref = new Firebase(ref + "/photo");
+      picref.remove();
+   }
+
    return factory;
 })
