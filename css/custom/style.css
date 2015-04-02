@@ -23,6 +23,38 @@ ul#n li {  display: inline; float: right; line-height: 45px; border: 5px solid #
 	margin:0;
 }
 
+.heart{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: rgba(255,20,147, 1);
+}
+.heart:before,
+.heart:after{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgba(255,20,147, 1);
+}
+.heart:before{
+    bottom: 0px;
+    left: -5px;
+}
+.heart:after{
+    top: -5px;
+    right: 0px;
+}
+
 .border {
     border-style: solid;
     border-color: black;
@@ -40,7 +72,7 @@ ul#n li {  display: inline; float: right; line-height: 45px; border: 5px solid #
 }
 
 #locationsItem {
-	text-align:center;
+	text-align:left;
 	width:100%;
 	height:75px;
 	border-bottom:2px solid #ddd;
