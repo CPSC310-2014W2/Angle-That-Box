@@ -1,4 +1,4 @@
-app.factory('MapFactory', function($http, $compile) 
+app.factory('MapFactory', function() 
 {
 	var factory = {};
 	var URLprefix = /http/;
