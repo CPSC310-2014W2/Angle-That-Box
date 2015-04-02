@@ -1,4 +1,4 @@
-app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
+app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
 
    var authFactory = AuthFactory;
    authFactory.verifyAuthenticated();
@@ -147,6 +147,19 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
                }
             }
          );
+   }
+
+   var parseData = function() {
+      $http.get('data/CulturalSpaces.csv').success(function(data) {
+         var objs = $.csv.toObjects(data);
+         var locations = {};
+         objs.forEach(function(item, i) {
+            item.LATITIUDE = parseInt(item.LATITIUDE);
+            item.LONGITUDE = parseInt(item.LONGITUDE);
+            var key = "loc" + parseInt(i);
+            locations[key] = item;
+         })
+      })
    }
 
 });
