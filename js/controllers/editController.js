@@ -45,12 +45,21 @@ app.controller("EditController", function($scope, $firebase, AuthFactory, EditFa
   }
 
   $scope.saveAll = function () {
-  	factory.saveName($scope.name);
-  	factory.saveLocation($scope.location);
-  	factory.saveBio($scope.bio);
-  	$scope.name = null;
-  	$scope.location = null;
-  	$scope.bio = null;
+    if($scope.name != null) {
+  	 factory.saveName($scope.name);
+     $scope.name = null;
+    }
+
+    if($scope.location != null) {
+     factory.saveLocation($scope.location);
+     $scope.location = null;
+    }
+
+    if($scope.bio != null) {
+     factory.saveBio($scope.bio);
+     $scope.bio = null;
+    }
+    
   	alert("Your changes have been saved!");
   }
 
