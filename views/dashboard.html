@@ -49,7 +49,7 @@
 				</div>
 
 				<div class="list-group scrollable">
-					<button id="locationsItem" class="list-group-item"  ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+					<button id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index); add($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
 						<span class="pull-right">
     						<div ng-Show="item.heart" class="heart"></div>
     						<div ng-hide="item.heart" class="heartFill"></div>
