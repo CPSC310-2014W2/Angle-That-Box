@@ -44,6 +44,12 @@ app.config(function($routeProvider) {
             controller: "FavouriteController"
          }
    )
+   .when("/administration",
+         {
+            templateUrl: "views/administration.html",
+            controller: "AdminCtrl"
+         }
+   )
    .when("/routes",
       {
          templateUrl: "views/routes.html",

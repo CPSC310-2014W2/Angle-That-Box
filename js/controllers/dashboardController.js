@@ -141,17 +141,4 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
       }
    }
 
-   var parseData = function() {
-      $http.get('data/CulturalSpaces.csv').success(function(data) {
-         var objs = $.csv.toObjects(data);
-         var locations = {};
-         objs.forEach(function(item, i) {
-            item.LATITIUDE = parseInt(item.LATITIUDE);
-            item.LONGITUDE = parseInt(item.LONGITUDE);
-            var key = "loc" + parseInt(i);
-            locations[key] = item;
-         })
-      })
-   }
-
 });
