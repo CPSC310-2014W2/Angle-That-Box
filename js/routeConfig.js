@@ -38,12 +38,6 @@ app.config(function($routeProvider) {
             controller: "EditController"
          }
    )
-   .when("/favourites",
-         {
-            templateUrl: "views/favourites.html",
-            controller: "FavouriteController"
-         }
-   )
    .when("/administration",
          {
             templateUrl: "views/administration.html",

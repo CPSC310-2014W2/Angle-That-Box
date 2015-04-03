@@ -63,5 +63,13 @@ app.controller("EditController", function($scope, $firebase, AuthFactory, EditFa
   	alert("Your changes have been saved!");
   }
 
+   $scope.cancelEdit = function () {
+      if (confirm('Are you sure you want to Cancel? Any unsaved changes will be lost.')) {
+        a = document.getElementById("cancelbtn");
+        a.setAttribute("href", "#/profile");
+      }
+      //otherwise stay on page
+    }
+
   }
 );
