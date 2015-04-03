@@ -22,9 +22,21 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
          LONGITUDE:item.LONGITUDE,
          ADDRESS:item.ADDRESS,
          WEBSITE:item.WEBSITE,
-         checked:false});
+         checked:false,
+         heart:false});
       });
    });
+
+
+   $scope.like = function (index) {
+      $scope.checkboxes[index].heart = !$scope.checkboxes[index].heart;
+      //if ($scope.checkboxes[index].heart = true) {
+      //   fFactory.add($scope.checkboxes[index])
+      //} else {
+        //fFactory.delete($scope.checkboxes[index]);
+      //}
+
+   }
    
    //sort selections to reflect how they are sorted in the view 
    $scope.sort = function(selectedSortOrder) {
