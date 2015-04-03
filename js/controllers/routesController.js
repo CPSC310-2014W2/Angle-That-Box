@@ -8,7 +8,7 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 	$scope.orderSelect = [];
 	$scope.routeOrder = [];
 	$scope.markers = []; //storing markers for reference
-
+	var routeCreated = false;
 
 	$scope.routes.$loaded().then(function(){
 		$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
@@ -24,19 +24,33 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 
 
 	$scope.createRoute = function() {
-		$scope.list.$loaded().then(function() {
-		var routeToRoute = RoutesFactory.getTheRouteSorted($scope.list, $scope.routes);
-		mapFactory.clearMarkers();
-		mapFactory.createRoute(routeToRoute);
-	});
-
-	}
-	$scope.selectAction = function(element) {
-		var elmental = element;
-		for (var i = 0; i < 10; i++)
+		if($scope.routes.length <= 1)
 		{
-			var apples = 1;
+			alert('cannot route 1 marker');
+		} else
+		{
+			routeCreated = true;
+			$scope.list.$loaded().then(function() {
+			var routeToRoute = RoutesFactory.getTheRouteSorted($scope.list, $scope.routes);
+			mapFactory.clearMarkers();
+			mapFactory.createRoute(routeToRoute);
+			});
 		}
+	}
+
+	$scope.removeRouteMarker = function(index){
+		$scope.routes.$remove(index).then(function(){
+
+			$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
+			if(routeCreated && $scope.routes.length > 1)
+			{
+				$scope.createRoute();
+			} else {
+				$scope.list.$loaded().then(function() {
+     				mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routes));
+  				});
+			}
+		})
 	}
 
 });

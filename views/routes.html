@@ -4,6 +4,8 @@
 	<div class="container">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#/favourites">Favourites</a></li>
+				<li><a href="#/profile">Profile</a></li>
 				<li><a href="#/dashboard">Dashboard</a></li>
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
 			</ul>
@@ -14,35 +16,39 @@
 	<h1 style="text-align:center">Route</h1>
 	<body>
 		<div class="col-md-3">
-		<div class="list-group scrollable">
-			<table class="class="table"" ng-model="routeOrder">
-				<thead>
+		<div>
+			<table class="table " ng-model="routeOrder">
+				<thead >
 					<th> 
 						Location
 					</th>
 					<th> 
 						Priority
 					</th>
+					<th>
+						Remove
+					</th>
 				</thead>
 				<tr ng-repeat="place in routes">
 					<td>{{place.name}}</td>
 					<td> 
 						<select
-						 ng-change="selectAction(place)"
 						 ng-model="place.$priority"
 						 data-ng-options="option.value as option.name for option in orderSelect"
 						 data-ng-init='1'>
 						</select>
 					</td>
-				</tr>
-				<tr>
 					<td>
-					<button ng-model="routeOrder" ng-click="createRoute()">
-						Calculate Route
-					</button>
-				</td>
+						<button ng-click="removeRouteMarker($index)">
+							X
+						</button>
+					<td>
 				</tr>
 			</table>
+
+			<button ng-model="routeOrder" ng-click="createRoute()">
+				Calculate Route
+			</button>
 			
 		</div>
 
