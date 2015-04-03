@@ -84,8 +84,6 @@ app.factory('RoutesFactory', function($firebase, $location)
       return sortedRoute;
    }
 
-
-
    factory.add = function(item) {
 
       var routesSnap;
