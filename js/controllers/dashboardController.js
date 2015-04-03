@@ -10,6 +10,7 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
    $scope.list = factory.getList();
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
+   $scope.favourites = fFactory.getFavourites();
 
    //set all checkboxes to false at first, list is initially sorted by name
    $scope.list.$loaded().then(function() {
@@ -27,17 +28,27 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
       });
    });
 
-
    $scope.like = function (index) {
       $scope.checkboxes[index].heart = !$scope.checkboxes[index].heart;
-      //if ($scope.checkboxes[index].heart = true) {
-      //   fFactory.add($scope.checkboxes[index])
-      //} else {
-        //fFactory.delete($scope.checkboxes[index]);
-      //}
-
    }
-   
+
+   $scope.add = function (index) {
+     var n = $scope.checkboxes[index].CULTURAL_SPACE_NAME; 
+     var exists = false;
+
+     angular.forEach ($scope.favourites, function (favourite) {
+         if (favourite.name == n) 
+               exists = true;
+        });
+
+
+      if (exists == true){
+            fFactory.delete($scope.checkboxes[index]); 
+      } else {
+         fFactory.add($scope.checkboxes[index]);
+      }
+   }
+ 
    //sort selections to reflect how they are sorted in the view 
    $scope.sort = function(selectedSortOrder) {
       $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
@@ -103,6 +114,8 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
       mapFactory.populateMap(map, $scope.list);
    });
 
+
+
    //Open info window of location when item in locations list is clicked
    $scope.openInfoWindow = function(index) {
       mapFactory.openWindow(index, map);
@@ -126,19 +139,6 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
             smfact.tweet(loc);
          }
       }
-   }
-
-   var parseData = function() {
-      $http.get('data/CulturalSpaces.csv').success(function(data) {
-         var objs = $.csv.toObjects(data);
-         var locations = {};
-         objs.forEach(function(item, i) {
-            item.LATITIUDE = parseInt(item.LATITIUDE);
-            item.LONGITUDE = parseInt(item.LONGITUDE);
-            var key = "loc" + parseInt(i);
-            locations[key] = item;
-         })
-      })
    }
 
 });

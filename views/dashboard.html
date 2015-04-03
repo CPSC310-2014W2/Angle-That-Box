@@ -1,11 +1,12 @@
 <nav class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
 		<div class="navbar-collapse collapse">
-			</ul>
+			<font class="navbar-brand" id="navHeader">Outinglicious</font></li>
 			<ul class="nav navbar-nav navbar-right">
-				<div class="pull-left" id="list">
+				<!-- <div id="list">
 					<li id="list"><font id="navHeader">Outinglicious</font></li>
-				</div>
+				</div> -->
+				<li><a href="#/administration">Administration</a></li>
 				<li><a href="#/favourites">Favourites</a></li>
 				<li><a href="#/profile">Profile</a></li>
 				<li><a href="#/routes">Routes</a></li>
@@ -14,7 +15,7 @@
 		</div>
 	</div>
 </nav>
-<div class="container-fluid spacing">
+<div class="container spacing">
 	<div class="row">
 		<div class="col-md-4">
 			<form>
@@ -49,7 +50,7 @@
 				</div>
 
 				<div class="list-group scrollable">
-					<button id="locationsItem" class="list-group-item"  ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+					<button id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index); add($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
 						<span class="pull-right">
     						<div ng-Show="item.heart" class="heart"></div>
     						<div ng-hide="item.heart" class="heartFill"></div>
@@ -60,11 +61,14 @@
 				</div>
 			</form>
 		</div>
-		
+		<div class="col-md-8">
+			<div class="pull-right" id="map-canvas"></div>
+				<button class="btn btn-default pull-right" ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
+				<button ng-click="share('fbPost')" style="margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
+			</div>
+		</div>
 	<div>
 </div>
-<div class="container">
-	<div class="pull-right" id="map-canvas"></div>
 <!-- 		<div class="col-md-3">
 			<div class="pull-right" id="quoteContent">
 				<p style="text-align:center;" id="quote"><q id="box">Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q>
@@ -73,8 +77,5 @@
 				</p>
 			</div>
 		</div> -->
-</div>
-<div class="container">
-	<button class="btn btn-default pull-right" ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
-	<button ng-click="share('fbPost')" style="margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
-</div>
+
+
