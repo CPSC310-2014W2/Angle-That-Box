@@ -7,7 +7,6 @@
 					<li id="list"><font id="navHeader">Outinglicious</font></li>
 				</div>
 				<li><a href="#/administration">Administration</a></li>
-				<li><a href="#/favourites">Favourites</a></li>
 				<li><a href="#/profile">Profile</a></li>
 				<li><a href="#/routes">Routes</a></li>
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
@@ -33,6 +32,7 @@
 					</select>
 				</div>
 
+
 				<div class="form-group">
 					<label>Order By</label>
 
@@ -47,13 +47,18 @@
 			    <div class="form-group">
 					<button class="btn btn-default" ng-click="addFavourites()">Add to Favourites</button>
 					<button class="btn btn-default" ng-click="addRoute()">Add to Route</button>
+					<label>View Likes:</label>
+					<input type="checkbox" ng-model="likes">
+					</input>
 				</div>
 
+				
+
 				<div class="list-group scrollable">
-					<button id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index); add($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+					<button ng-hide="!item.Heart &&  likes" id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index); add($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
 						<span class="pull-right">
-    						<div ng-Show="item.heart" class="heart"></div>
-    						<div ng-hide="item.heart" class="heartFill"></div>
+    						<div ng-Show="item.Heart" class="heart"></div>
+    						<div ng-hide="item.Heart" class="heartFill"></div>
 						</span>
 						
 					</button>

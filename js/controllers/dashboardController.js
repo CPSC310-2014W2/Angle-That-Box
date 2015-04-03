@@ -24,24 +24,40 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
          ADDRESS:item.ADDRESS,
          WEBSITE:item.WEBSITE,
          checked:false,
-         heart:false});
+         Heart:false});
       });
+      $scope.getFavourites();
    });
 
+   //populate the page with your likes already marked
+   $scope.getFavourites = function() {
+     $scope.favourites = fFactory.getFavourites();
+     $scope.favourites.$loaded().then(function() {
+      angular.forEach ($scope.checkboxes, function (item) {
+        angular.forEach ($scope.favourites, function (favourite) {
+            if (item.CULTURAL_SPACE_NAME == favourite.name) 
+                  item.Heart = true;
+        });
+    });
+   });
+    //var test = $scope.favourites;
+   };
+
    $scope.like = function (index) {
-      $scope.checkboxes[index].heart = !$scope.checkboxes[index].heart;
+      $scope.checkboxes[index].Heart = !$scope.checkboxes[index].Heart;
    }
 
    $scope.add = function (index) {
      var n = $scope.checkboxes[index].CULTURAL_SPACE_NAME; 
      var exists = false;
 
+     // check if the space is in your favourites to know if we're liking or unliking
      angular.forEach ($scope.favourites, function (favourite) {
          if (favourite.name == n) 
                exists = true;
         });
 
-
+      // if its in favourites we must be unliking so delete it, otherwise we must be liking so add it
       if (exists == true){
             fFactory.delete($scope.checkboxes[index]); 
       } else {
@@ -58,11 +74,13 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
    $scope.filtertype = function(searchTYPE) {
       $scope.search.CULTURAL_SPACE_NAME = "";
       filterLocations(searchTYPE);
+      $scope.getFavourites();
    }
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtername = function(searchCULTURAL_SPACE_NAME) {
       filterLocations(searchCULTURAL_SPACE_NAME);
+      $scope.getFavourites();
    }
 
    var filterLocations = function(type) {
