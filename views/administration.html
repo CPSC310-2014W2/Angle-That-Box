@@ -1,3 +1,33 @@
-<h1>Administration</h1>
-<input type="file" accept=".csv" id="csvfile">
-<button ng-click="upload()">Upload</button>
+<div style="text-align:center">
+	<div class="container">
+		<h1>Administration</h1>
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel panel-body">
+						<button class="btn btn-default" onclick="document.getElementById('csvfile').click();"><span class="glyphicon glyphicon-file"></span> Choose File</button>
+						<button class="btn btn-default" ng-click="upload()"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel panel-header">
+						<h4><span class="glyphicon glyphicon-warning-sign" style="color:red"></span> Please ensure that the file is of the correct format</h4>
+					</div>
+					<div class="panel panel-body">
+						<button class="btn btn-default">View Sample Data</button>
+						<button class="btn btn-default">View Required Fields</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="file" style="visibility: hidden" accept=".csv" id="csvfile">
