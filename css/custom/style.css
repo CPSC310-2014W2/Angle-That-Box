@@ -6,8 +6,96 @@
 	margin-bottom:0px;
 }
 
+/* @group core */
+.wrapper { width: 850px; overflow: hidden; margin: 0 auto; background: none; }
+
+#content { display: block; width: 820px; margin: 0 auto;  }
+#left { display: block; width: 560px; float: left; overflow: hidden; margin-right: 20px; }
+#right { display: block; width: 240px; float: left; overflow: hidden; }
+
+/* @group navigation */
+nav { width: auto; background: #eee; height: 45px; border-bottom: 1px solid #dadada; margin-bottom: 30px; }
+
+ul#n { padding-right: 100px;margin: 0 auto; display: block; list-style: none; }
+ul#n li {  display: inline; float: right; line-height: 45px; border: 5px solid #eee; border-top: 0px; border-bottom: 0px;}
+
 .navbar {
 	margin:0;
+}
+
+.heart{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: rgba(255,20,147, 1);
+}
+.heart:before,
+.heart:after{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgba(255,20,147, 1);
+}
+.heart:before{
+    bottom: 0px;
+    left: -5px;
+}
+.heart:after{
+    top: -5px;
+    right: 0px;
+}
+
+.heartFill{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: rgba(255,182,193, 1);
+}
+.heartFill:before,
+.heartFill:after{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgba(255,182,193, 1);
+}
+.heartFill:before{
+    bottom: 0px;
+    left: -5px;
+}
+.heartFill:after{
+    top: -5px;
+    right: 0px;
+}
+
+
+
+
+
+
+.border {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .spacing {
@@ -23,7 +111,7 @@
 }
 
 #locationsItem {
-	text-align:center;
+	text-align:left;
 	width:100%;
 	height:75px;
 	border-bottom:2px solid #ddd;
@@ -39,9 +127,8 @@
 }
 
 #map-canvas {
-	height:350px; 
+	height:400px; 
 	width:750px; 
-	margin:0 auto 0 auto; 
 	border:2px solid black
 }
 
@@ -72,7 +159,7 @@
 #navHeader {
 	font-family: Brush Script MT;
 	font-size: 350%; 
-	color: turquoise;
+	color: white;
 }
 
 #quote {

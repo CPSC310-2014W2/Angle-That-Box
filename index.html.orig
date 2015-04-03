@@ -6,14 +6,11 @@
 </head>
 <body>
 
+    <!-- ng-view is a placeholder for the other views, the default url should redirect to main.html -->
     <div ng-view></div>
 
-    <div id="fb-root"></div>
-    <script type="text/javascript" src="scripts/facebook_api.js"></script>
-    
     <!-- scripts needed for foundation css -->
     <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/jquery.csv-0.71.js"></script>
     <script src="scripts/bootstrap.js"></script>
 
     <!-- AngularJS scripts -->
@@ -30,9 +27,12 @@
     <script type="text/javascript" src="js/controllers/loggedOutController.js"></script>
     <script type="text/javascript" src="js/controllers/favouriteController.js"></script>
     <script type="text/javascript" src="js/controllers/wishlistController.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="js/controllers/profileController.js"></script>
-    <script type="text/javascript" src="js/controllers/routesController.js"></script>
     <script type="text/javascript" src="js/controllers/editController.js"></script>
+=======
+    <script type="text/javascript" src="js/controllers/routesController.js"></script>
+>>>>>>> Issue #27: First draft of work
 
     <!-- Factories -->
     <script type="text/javascript" src="js/factories/authFactory.js"></script>
@@ -42,12 +42,13 @@
     <script type="text/javascript" src="js/factories/mapFactory.js"></script>
     <script type="text/javascript" src="js/factories/wishlistFactory.js"></script>
     <script type="text/javascript" src="js/factories/favouriteFactory.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="js/factories/profileFactory.js"></script>
-    <script type="text/javascript" src="js/factories/routesFactory.js"></script>
     <script type="text/javascript" src="js/factories/editFactory.js"></script>
-    <script type="text/javascript" src="js/factories/socialMediaFactory.js"></script>
-    <script type="text/javascript" src="js/factories/projectUrl.js"></script>
 
+=======
+    <script type="text/javascript" src="js/factories/routesFactory.js"></script>
+>>>>>>> Issue #27: First draft of work
 
     <!-- Route Config -->
     <script type="text/javascript" src="js/routeConfig.js"></script>

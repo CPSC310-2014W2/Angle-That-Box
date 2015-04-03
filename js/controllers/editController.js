@@ -1,10 +1,17 @@
-app.controller("EditController", function($scope, $firebase, EditFactory) {
+app.controller("EditController", function($scope, $firebase, AuthFactory, EditFactory) {
+
+  var authFactory = AuthFactory;
+  authFactory.verifyAuthenticated();
 
   var factory = EditFactory; 
   $scope.userData = factory.getUserData();
   $scope.name;
   $scope.location;
   $scope.bio;
+
+  $scope.logout = function () {
+    authFactory.logout();
+   }
 
   $scope.updateName = function (name) {
   	$scope.name = name;
@@ -38,12 +45,21 @@ app.controller("EditController", function($scope, $firebase, EditFactory) {
   }
 
   $scope.saveAll = function () {
-  	factory.saveName($scope.name);
-  	factory.saveLocation($scope.location);
-  	factory.saveBio($scope.bio);
-  	$scope.name = null;
-  	$scope.location = null;
-  	$scope.bio = null;
+    if($scope.name != null) {
+  	 factory.saveName($scope.name);
+     $scope.name = null;
+    }
+
+    if($scope.location != null) {
+     factory.saveLocation($scope.location);
+     $scope.location = null;
+    }
+
+    if($scope.bio != null) {
+     factory.saveBio($scope.bio);
+     $scope.bio = null;
+    }
+    
   	alert("Your changes have been saved!");
   }
 

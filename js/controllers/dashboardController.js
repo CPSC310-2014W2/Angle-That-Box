@@ -1,12 +1,12 @@
-app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, DashboardFactory, MapFactory, WishlistFactory, FavouriteFactory) {
+app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, DashboardFactory, MapFactory, RoutesFactory, FavouriteFactory, SocialMediaFactory) {
 
    var authFactory = AuthFactory;
    authFactory.verifyAuthenticated();
    
-   var factory = DashboardFactory; //this is an instance of the factory
+   var factory = DashboardFactory;
    var mapFactory = MapFactory;
    var fFactory = FavouriteFactory;
-   var wFactory = WishlistFactory;
+   var rFactory = RoutesFactory;
    $scope.list = factory.getList();
    $scope.checkboxes = []; //to keep track of which boxes are checked
    $scope.filterTypes = [{'value': '', 'name': ''}];
@@ -22,9 +22,21 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
          LONGITUDE:item.LONGITUDE,
          ADDRESS:item.ADDRESS,
          WEBSITE:item.WEBSITE,
-         checked:false});
+         checked:false,
+         heart:false});
       });
    });
+
+
+   $scope.like = function (index) {
+      $scope.checkboxes[index].heart = !$scope.checkboxes[index].heart;
+      //if ($scope.checkboxes[index].heart = true) {
+      //   fFactory.add($scope.checkboxes[index])
+      //} else {
+        //fFactory.delete($scope.checkboxes[index]);
+      //}
+
+   }
    
    //sort selections to reflect how they are sorted in the view 
    $scope.sort = function(selectedSortOrder) {
@@ -77,10 +89,10 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
       $scope.unCheckAll();
    }
 
-   $scope.addWishlist = function() { 
+   $scope.addRoute = function() { 
        angular.forEach($scope.checkboxes, function (item) {
          if (item.checked) 
-            wFactory.add(item);
+            rFactory.add(item);
       });
       $scope.unCheckAll();
    }
@@ -99,4 +111,34 @@ app.controller('DashboardCtrl', function($scope, $filter, AuthFactory, Dashboard
    $scope.logout = function() {
       authFactory.logout();
    }
+
+   //used for facebook posts and tweets, takes string parameters "fbPost" or "tweet"
+   $scope.share = function(type) {
+      var smfact = SocialMediaFactory;
+      var openWindow = mapFactory.getSelectedMarker();
+      if (openWindow == undefined) {
+         alert("Please select a location marker before sharing")
+      } else {
+         var loc = $scope.checkboxes[openWindow.index];
+         if (type == "fbPost") {
+            smfact.fbPost(loc);
+         } else if (type == "tweet") {
+            smfact.tweet(loc);
+         }
+      }
+   }
+
+   var parseData = function() {
+      $http.get('data/CulturalSpaces.csv').success(function(data) {
+         var objs = $.csv.toObjects(data);
+         var locations = {};
+         objs.forEach(function(item, i) {
+            item.LATITIUDE = parseInt(item.LATITIUDE);
+            item.LONGITUDE = parseInt(item.LONGITUDE);
+            var key = "loc" + parseInt(i);
+            locations[key] = item;
+         })
+      })
+   }
+
 });

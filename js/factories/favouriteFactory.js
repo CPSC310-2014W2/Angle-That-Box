@@ -4,7 +4,7 @@ app.factory('FavouriteFactory', function($firebase, $location)
 
    var url = "https://angle-that-box.firebaseio.com";
    var uRef = new Firebase(url);
-   var currentUser = uRef.getAuth();
+   var currentUser = uRef.getAuth() || {"google" : google};
    var userID = currentUser.google.id;
    
    var ref = new Firebase(url + '/favouriteLocations/' + userID + '/favourites');
@@ -28,13 +28,15 @@ app.factory('FavouriteFactory', function($firebase, $location)
       var key = name.replace(/\.|\#|\$|\[|\]|\//g, ' ');
 
       //only add if there are no duplicates
-      if (!favSnap.hasChild(key)) {
+      if (!favSnap.hasChild(key)) 
          ref.child(key).set({"name":name});
-         alert("Add Successful");
-      } else {
-         alert("Item is already in Favourites");
-      }
    };
+
+   factory.delete = function (item) {
+         var name = item.CULTURAL_SPACE_NAME;
+         var key = name.replace(/\.|\#|\$|\[|\]|\//g, ' ');
+         ref.child(key).remove();
+   }
 
    return factory;
 })

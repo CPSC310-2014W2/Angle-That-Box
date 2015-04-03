@@ -4,6 +4,7 @@
 	<div class="container">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#/dashboard">Dashboard</a></li>
 				<li><a href="#/wishlist">Wishlist</a></li>
 				<li><a href="#/profile">Profile</a></li>
 				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
@@ -15,9 +16,7 @@
 	
 	<nav>
 		<ul id="n" class="clearfix">
-			<li><a href="#/dashboard">Dashboard</a></li>
-			<li><a href="#/settings">Settings</a></li>
-			<li><a href="#/editprofile">Edit Profile</a></li>
+			<li><a class="btn btn-default" href="#/edit" role="button">Edit Profile</a></li>
 		</ul>
 	</nav>
 	
@@ -27,6 +26,7 @@
 			<div id="userStats" class="clearfix" ng-model="userData">
 		<div class="form-group">
 		    <label>Name:</label>
+		    <h5 class="border">{{userData.name}}</h5>
 		    <input type="text" class="form-control" ng-model="name" ng-change="updateName(name)">
 		    <button type="button" class="btn btn-default" ng-click="saveName()">
          		<span class="glyphicon glyphicon-floppy-disk"></span> 
@@ -35,6 +35,7 @@
 		</div>
 		<div class="form-group">
 		    <label>Location:</label>
+		    <h5 class="border">{{userData.location}}</h5>
 		    <input type="text" class="form-control" ng-model="location" ng-change="updateLocation(location)">
 		     <button type="button" class="btn btn-default" ng-click="saveLocation()">
          		<span class="glyphicon glyphicon-floppy-disk"></span> 
@@ -42,6 +43,7 @@
 		</div>
 		<div class="form-group">
 		    <label>Bio:</label>
+		    <h5 class="border">{{userData.bio}}</h5>
 		    <textarea rows="10" cols="20"class="form-control" ng-model="bio" ng-change="updateBio(bio)"></textarea>
 		    <button type="button" class="btn btn-default" ng-click="saveBio()">
          		<span class="glyphicon glyphicon-floppy-disk"></span> 
