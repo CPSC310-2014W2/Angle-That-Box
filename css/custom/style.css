@@ -1,8 +1,7 @@
 #banner {
 	background-image:url("http://upload.wikimedia.org/wikipedia/commons/2/27/Vancouver_dusk_pano.jpg");
-	background-position:62% 4%;
-	background-attachment:fixed;
-	min-height:420px;
+	background-position:62% 15%;
+	min-height:400px;
 	margin-bottom:0px;
 }
 
@@ -165,4 +164,10 @@ ul#n li {  display: inline; float: right; line-height: 45px; border: 5px solid #
 #quote {
 	font-style: italic;
 	font-weight: normal;
+}
+
+.mainWell {
+    height:170px;
+    background-color: #222D5B;
+    color:white;
 }
