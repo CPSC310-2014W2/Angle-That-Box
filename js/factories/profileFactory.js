@@ -5,7 +5,7 @@ app.factory('ProfileFactory', function($firebase, $location)
    var url = "https://angle-that-box.firebaseio.com";
 
    var uRef = new Firebase(url);
-   var currentUser = uRef.getAuth();
+   var currentUser = uRef.getAuth() || {"google" : google};
    var userID = currentUser.google.id;
    
    var ref = new Firebase(url + '/users/' + userID);
