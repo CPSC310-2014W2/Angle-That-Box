@@ -64,11 +64,6 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
          fFactory.add($scope.checkboxes[index]);
       }
    }
- 
-   //sort selections to reflect how they are sorted in the view 
-   $scope.sort = function(selectedSortOrder) {
-      $scope.checkboxes = $filter('orderBy')($scope.checkboxes, selectedSortOrder);
-   }
 
    //filter selections to reflect how they are filtered in the view
    $scope.filtertype = function(searchTYPE) {
