@@ -84,6 +84,11 @@ app.factory('RoutesFactory', function($firebase, $location)
       return sortedRoute;
    }
 
+   factory.validRouteLength = function(route){
+      //can only create a route with more than 1 location
+      return route.length > 1; 
+   }
+
    factory.add = function(item) {
 
       var routesSnap;

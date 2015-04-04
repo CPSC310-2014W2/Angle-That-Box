@@ -317,6 +317,31 @@ describe('RoutesFactory', function(){
 
   }))
 
+  it('validRouteLength should return true for all these routes', angular.mock.inject(function($injector){
+    var factory = $injector.get('RoutesFactory');
+    var routes = [
+    {name: "Michael's Shack", location: "street"},
+    3, 'apples'];
+
+    expect(factory.validRouteLength(routes)).toBe(true);
+   
+    routes = [1, 3 ];
+    expect(factory.validRouteLength(routes)).toBe(true);
+
+    routes = locations;
+    expect(factory.validRouteLength(routes)).toBe(true);
+
+  }));
+
+    it('validRouteLength should return false for all these routes', angular.mock.inject(function($injector){
+    var factory = $injector.get('RoutesFactory');
+    var routes = [];
+
+    expect(factory.validRouteLength(routes)).toBe(false);
+    
+    routes = [1];
+    expect(factory.validRouteLength(routes)).toBe(false);
+  }));
 
 
 });

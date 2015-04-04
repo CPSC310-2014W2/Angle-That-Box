@@ -24,7 +24,7 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 
 
 	$scope.createRoute = function() {
-		if($scope.routes.length <= 1)
+		if(!rfactory.validRouteLength($scope.routes))
 		{
 			alert('cannot route 1 marker');
 		} else
@@ -40,9 +40,8 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 
 	$scope.removeRouteMarker = function(index){
 		$scope.routes.$remove(index).then(function(){
-
 			$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
-			if(routeCreated && $scope.routes.length > 1)
+			if(routeCreated && rfactory.validRouteLength($scope.routes))
 			{
 				$scope.createRoute();
 			} else {
