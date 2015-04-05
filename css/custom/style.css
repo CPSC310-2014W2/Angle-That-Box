@@ -11,7 +11,6 @@
 #content { display: block; width: 900px; margin: 0 auto;  }
 #left { display: block; width: 300px; float: center; overflow: hidden; }
 #right { display: block; width: 300px; float: left; overflow: hidden; }
-#farleft{ display: block; width: 300px; float: right; overflow: hidden; }
 
 /* @group navigation */
 nav { width: auto; background: #eee; height: 45px; border-bottom: 1px solid #dadada; margin-bottom: 30px; }

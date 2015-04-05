@@ -4,10 +4,8 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
    authFactory.verifyAuthenticated();
 
    var factory = ProfileFactory; 
-   var fFactory = FavouriteFactory;
    $scope.userData = factory.getUserData();
    $scope.confirmed; //for testing purposes
-   $scope.favourites = fFactory.getFavourites();
 
    //after getting the userData show either their pic or the default pic if they don't have one uploaded
    $scope.userData.$loaded().then(function() {
@@ -20,13 +18,6 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
       authFactory.logout();
    }
 
-   $scope.unlike = function (index) {
-      if (confirm('Are you sure you want to unlike ' + $scope.favourites[index].CULTURAL_SPACE_NAME + ' ?')) {
-      $scope.favourites[index].Heart = !$scope.favourites[index].Heart;
-      fFactory.delete($scope.favourites[index]);
-    }
-    // otherwise do nothing
-   }
 
 
    $scope.uploadPhoto = function (selectedFile) {
