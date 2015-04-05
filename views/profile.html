@@ -55,6 +55,17 @@
                     <p>{{userData.bio}}</p>
                 </div>
             </section>
+            <section id="farleft">
+                <h5 align="center">My Favourites</h5>
+        <div class="list-group scrollable">
+                            <button id="locationsItem" class="list-group-item" data-ng-repeat="item in favourites | orderBy:selectedSortOrder |filter: search" data-ng-click="unlike($index)">{{item.CULTURAL_SPACE_NAME}}
+                                <span class="pull-right">
+                                    <div class="heart"></div>
+                                </span>
+                            </button>
+            </div>
+        </section>
+            
         </div>
     </body>
 </html>

@@ -30,7 +30,7 @@ app.factory('FavouriteFactory', function($firebase, $location)
 
       //only add if there are no duplicates
       if (!favSnap.hasChild(key)) 
-         ref.child(key).set({ "name": name, "heart": heart });
+         ref.child(key).set({ "CULTURAL_SPACE_NAME": name, "heart": heart });
    };
 
    factory.delete = function (item) {
