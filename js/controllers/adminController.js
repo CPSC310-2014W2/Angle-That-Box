@@ -10,10 +10,10 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
 	"SQUARE_FEET","NUMBER_OF_SEATS","ACTIVE_SPACE","LONGITUDE","LATITIUDE"]
 
 	var locRef = ref.child("locations");
-  var liRef = $firebase(ref.child("lastIndex")).$asObject();
+  var liRef = $firebase(ref.child("lastLocationsIndex")).$asObject();
   
   var index;
-  // var nref = $firebase(new Firebase("https://radiant-torch-6582.firebaseio.com/ndex")).$asObject();
+
   liRef.$loaded().then(function(liRef) {
     index = parseInt(liRef.$value);
   });
@@ -89,7 +89,7 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
         index += 1;
         var key = "loc" + parseInt(index);
         locRef.child(key).set(newItem);
-        ref.child("lastIndex").set(index);
+        ref.child("lastLocationsIndex").set(index);
         }
     })
 
