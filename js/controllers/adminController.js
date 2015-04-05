@@ -21,7 +21,8 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, $cookies, AuthFac
 
 
 	$scope.upload = function() {
-    var uid = $cookies.uid.split(":")[1];
+    //check if admin
+      var uid = $cookies.uid.split(":")[1];
       var userRef = new Firebase("https://angle-that-box.firebaseio.com/users/" + uid)
       userRef.once('value', function(snapshot) {
       if (!snapshot.hasChild("admin")) {
@@ -29,7 +30,7 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, $cookies, AuthFac
           return;
       } else {
       
-
+        //begin file parsing
         var data = null;
         var file = $("#csvfile")[0].files[0];
 

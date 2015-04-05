@@ -4,7 +4,7 @@ app.factory('SocialMediaFactory', function(ProjectUrl)
 
    factory.tweet = function(loc) {
       var url = "https://twitter.com/share?url=google.com&text=" + "Check out this cultural space, " + loc.CULTURAL_SPACE_NAME + 
-      " " + loc.WEBSITE + " that I found from " + ProjectUrl;
+      " " + " that I found from " + ProjectUrl;
       window.open(url);
    }
 
