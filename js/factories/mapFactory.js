@@ -27,47 +27,45 @@ app.factory('MapFactory', function()
 		var start = 0;
 		var finish = 0;
 		var path=[];
-		if (locations.length == 2){
-			start = locations[0];
-			finish = locations[locations.length - 1];
+		start = locations[0];
+		finish = locations[locations.length - 1];
 
-			var request = {
-				origin: new google.maps.LatLng(start.LATITIUDE, start.LONGITUDE),
-				destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
-				travelMode: google.maps.TravelMode.DRIVING
-			};
-			
-			directionService.route(request, function(response, status){
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionsDisplay.setDirections(response);
-				}
-			});
-		} else if (locations.length > 2){
-			start = locations[0];
-			finish = locations[locations.length - 1];
+		if(locations.length > 2)
+		{
+			path = createWayPoints(locations);
+		}
 
-			for(var i = 1; i < locations.length-1; i++){ //add all the middle elements
-				path.push(
-					{
-    					location: new google.maps.LatLng(locations[i].LATITIUDE, locations[i].LONGITUDE),
-     					stopover:true
-   					}
-				);
+		var request = {
+			origin: new google.maps.LatLng(start.LATITIUDE, start.LONGITUDE),
+			destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
+			waypoints: path,
+			travelMode: google.maps.TravelMode.DRIVING
+		};
+		
+		directionService.route(request, function(response, status){
+			if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(response);
 			}
+		})
+	}
 
-			var request = {
-				origin: new google.maps.LatLng(start.LATITIUDE, start.LONGITUDE),
-				destination: new google.maps.LatLng(finish.LATITIUDE, finish.LONGITUDE),
-				waypoints: path,
-				travelMode: google.maps.TravelMode.DRIVING
-			};
-
-			directionService.route(request, function(response, status){
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionsDisplay.setDirections(response);
-				}
+	function createWayPoints(locations){
+		var path = [];
+		for(var i = 1; i < locations.length-1; i++){ //add all the middle elements
+			path.push({
+				location: new google.maps.LatLng(locations[i].LATITIUDE, locations[i].LONGITUDE),
+				stopover:true
 			});
 		}
+		return path;
+	}
+
+	function addRunTimes(legs){
+		var totalSeconds = 0;
+		for(var i = 0; i < legs.length; i++){
+			totalSeconds = totalSeconds + legs[0].duration.value;
+		}
+		return totalSeconds / 60 ;
 	}
 
 
