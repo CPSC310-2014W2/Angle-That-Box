@@ -99,17 +99,17 @@ describe('RoutesFactory', function(){
 
 
 
-	it('getSelectable should get an empty list of Select values', angular.mock.inject(function($injector) {
+	it('getPriorityOptions should get an empty list of Select values', angular.mock.inject(function($injector) {
     var factory = $injector.get('RoutesFactory');
 
     var route = []
-    var result =  factory.getSelectable(route);
+    var result =  factory.getPriorityOptions(route);
 
     //empty return
     expect(result.length).toBe(0);
   }));
 
-  it('getSelectable should get a select list of size 4', angular.mock.inject(function($injector) {
+  it('getPriorityOptions should get a select list of size 4', angular.mock.inject(function($injector) {
     //Size is the same size
     var factory = $injector.get('RoutesFactory');
 
@@ -117,7 +117,7 @@ describe('RoutesFactory', function(){
     {name: 'hello', id: 'myName'},
     {name: 'hello', id: 'myName'},
     {name: 'hello', id: 'myName'}]
-    var result = factory.getSelectable(route);
+    var result = factory.getPriorityOptions(route);
 
   	expect(result.length).toBe(route.length);
     for (var i = 0; i  <result.length; i++)
@@ -127,7 +127,7 @@ describe('RoutesFactory', function(){
     }
   }));
 
-  it('getSelectable should get a select list of size 100', angular.mock.inject(function($injector) {
+  it('getPriorityOptions should get a select list of size 100', angular.mock.inject(function($injector) {
     var factory = $injector.get('RoutesFactory');
     route = []
     var arrayLength = 100;
@@ -136,7 +136,7 @@ describe('RoutesFactory', function(){
       route.push(i);
     }
 
-    var result = factory.getSelectable(route);
+    var result = factory.getPriorityOptions(route);
 
     expect(result.length).toBe(arrayLength);
     for (var i = 0; i  < arrayLength; i++){
