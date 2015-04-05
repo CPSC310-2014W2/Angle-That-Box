@@ -29,7 +29,7 @@ app.controller("RoutesController", function($scope, $firebase, AuthFactory, Rout
 	$scope.createRoute = function() {
 		if(!rfactory.validRouteLength($scope.routeLocations))
 		{
-			alert('need at least 2 locations');
+			alert('Need at least 2 locations to calculate a route');
 		} else
 		{
 			routeCreated = true;
