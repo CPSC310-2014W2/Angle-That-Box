@@ -2,62 +2,60 @@
 <html>
     <head>
     	<title>Routes</title>
-    	<nav class="navbar navbar-inverse navbar-static-top">
-        	<div class="container">
-        		<div class="navbar-collapse collapse">
-        			<ul class="nav navbar-nav navbar-right">
+    </head>
+	<body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <div class="navbar-brand" id="navHeader">Outinglicious</div>
+                    <ul class="nav navbar-nav navbar-right">
                         <li><a href="#/dashboard">Dashboard</a></li>
                         <li><a href="#/routes">Routes</a></li>
                         <li><a href="#/administration">Administration</a></li>
                         <li><a href="#/profile">Profile</a></li>
-                        <li class="handPointer"><a ng-click="logout()">Log out</a></li>
-        			</ul>
-        		</div>
-        	</div>
+                        <li class="handPointer"><a href="" data-ng-click="logout()">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-    </head>
-	<h1 style="text-align:center">Route</h1>
-	<body>
+        
+        <h1 style="text-align:center">Route</h1>
+        
 		<div class="col-md-3">
-		<div>
-			<table class="table " ng-model="routeOrder">
-				<thead >
-					<th> 
-						Location
-					</th>
-					<th> 
-						Priority
-					</th>
-					<th>
-						Remove
-					</th>
-				</thead>
-				<tr ng-repeat="place in routes">
-					<td>{{place.name}}</td>
-					<td> 
-						<select
-						 ng-model="place.$priority"
-						 data-ng-options="option.value as option.name for option in orderSelect"
-						 data-ng-init='1'>
-						</select>
-					</td>
-					<td>
-						<button ng-click="removeRouteMarker($index)">
-							X
-						</button>
-					<td>
-				</tr>
-			</table>
+    		<div>
+    			<table class="table " data-ng-model="routeOrder">
+    				<thead>
+    					<tr>
+                            <th> 
+        						Location
+        					</th>
+        					<th> 
+        						Priority
+        					</th>
+        					<th>
+        						Remove
+        					</th>
+                        </tr>
+    				</thead>
+                    <tr data-ng-repeat="place in routes">
+                    	<td>{{place.name}}</td>
+                    	<td> 
+                    		<select data-ng-model="place.$priority"
+                    		 data-ng-options="option.value as option.name for option in orderSelect"
+                    		 data-ng-init='1'></select>
+                    	</td>
+                    	<td>
+                    		<button data-ng-click="removeRouteMarker($index)">X</button>
+                    	</td>
+                    </tr>
+    			</table>
 
-			<button ng-model="routeOrder" ng-click="createRoute()">
-				Calculate Route
-			</button>
-			
-		</div>
-
-	</div>
-	<div class="container">
-				<div class="pull-right" id="map-canvas"></div>
-		</div>
-	</body>
+                <button data-ng-model="routeOrder" data-ng-click="createRoute()">Calculate Route</button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="pull-right" id="map-canvas"></div>
+        </div>
+    </body>
 </html>

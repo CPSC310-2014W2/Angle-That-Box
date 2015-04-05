@@ -19,6 +19,8 @@
             </div>
         </nav>
         
+        <h1 style="text-align:center">Dashboard</h1>
+        
         <div class="container spacing">
         	<div class="row">
         		<div class="col-md-4">
@@ -52,10 +54,10 @@
         
         				<div class="list-group scrollable">
         					<button data-ng-hide="!item.Heart &&  likes" id="locationsItem" class="list-group-item" data-ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" data-ng-click="openInfoWindow($index); like($index); add($index)">
-                                <input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+                                <input type="checkbox" data-ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}
         						<span class="pull-right">
-            						<div ng-Show="item.Heart" class="heart"></div>
-            						<div ng-hide="item.Heart" class="heartFill"></div>
+            						<div data-ng-Show="item.Heart" class="heart"></div>
+            						<div data-ng-hide="item.Heart" class="heartFill"></div>
         						</span>
         					</button>
         					<div data-ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
@@ -64,8 +66,8 @@
         		</div>
         		<div class="col-md-8">
         			<div class="pull-right" id="map-canvas"></div>
-        			<button class="btn btn-default pull-right" style="margin-top:10px" data-ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
-        			<button data-ng-click="share('fbPost')" style="margin-top:10px; margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
+        			<button class="btn btn-default pull-right" style="margin-top:10px" data-ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png" alt="Tweet on Twitter"> Tweet</button>
+        			<button data-ng-click="share('fbPost')" style="margin-top:10px; margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png" alt="Share on Facebook"> Share</button>
         		</div>
         	</div>
         </div>
