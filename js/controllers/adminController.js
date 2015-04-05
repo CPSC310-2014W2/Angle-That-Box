@@ -1,5 +1,8 @@
-app.controller('AdminCtrl', function($scope, $firebase, $http) {
+app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
 
+   var authFactory = AuthFactory;
+   authFactory.verifyAuthenticated();
+   
 	var url = "https://radiant-torch-6582.firebaseio.com/";
     var ref = new Firebase(url);
 
@@ -76,6 +79,10 @@ app.controller('AdminCtrl', function($scope, $firebase, $http) {
 	        locRef.child(key).set(newItem);
      	}
      })
+   }
+   
+   $scope.logout = function() {
+      authFactory.logout();
    }
 
 })

@@ -1,61 +1,57 @@
-<body>	
-	<header>
-		<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#/dashboard">Dashboard</a></li>
-				<li><a href="#/profile">Profile</a></li>
-				<li><a href="#/routes">Routes</a></li>
-				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-	</header>
-	
-	<nav>
-		<ul id="n" class="clearfix">
-			<li><a class="btn btn-default" href="#/edit" role="button">Edit Profile</a></li>
-		</ul>
-	</nav>
-	
-	<div id="content" class="clearfix">
-		<section id="right">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <div class="navbar-brand" id="navHeader">Outinglicious</div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#/dashboard">Dashboard</a></li>
+                            <li><a href="#/routes">Routes</a></li>
+                            <li><a href="#/administration">Administration</a></li>
+                            <li><a href="#/profile">Profile</a></li>
+                            <li class="handPointer"><a href="" data-ng-click="logout()">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-			<div id="userStats" class="clearfix" ng-model="userData">
-		<div class="form-group">
-		    <label>Name:</label>
-		    <h5 class="border">{{userData.name}}</h5>
-		    <input type="text" class="form-control" ng-model="name" ng-change="updateName(name)">
-		    <button type="button" class="btn btn-default" ng-click="saveName()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button>
-					
-		</div>
-		<div class="form-group">
-		    <label>Location:</label>
-		    <h5 class="border">{{userData.location}}</h5>
-		    <input type="text" class="form-control" ng-model="location" ng-change="updateLocation(location)">
-		     <button type="button" class="btn btn-default" ng-click="saveLocation()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button>
-        	
-		</div>
-		<div class="form-group">
-		    <label>Bio:</label>
-		    <h5 class="border">{{userData.bio}}</h5>
-		    <textarea rows="10" cols="20"class="form-control" ng-model="bio" ng-change="updateBio(bio)"></textarea>
-		    <button type="button" class="btn btn-default" ng-click="saveBio()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button><br>
-		</div>
-			</div>
-
-		<a href="#/edit" id="cancelbtn"><button align="left" class="btn btn-default" ng-click="cancelEdit()">Cancel</button></a>
-		<button align="left" class="btn btn-default" ng-click="saveAll()">Save All</button>
-
-		</section>
-	</div>
-	
-</body>
+        <div id="content" class="clearfix">
+            <section id="right">
+                <div id="userStats" class="clearfix" data-ng-model="userData">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <h5 class="border">{{userData.name}}</h5>
+                        <input type="text" class="form-control" data-ng-model="name" data-ng-change="updateName(name)">
+                        <button type="button" class="btn btn-default" data-ng-click="saveName()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span> 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <h5 class="border">{{userData.location}}</h5>
+                        <input type="text" class="form-control" data-ng-model="location" data-ng-change="updateLocation(location)">
+                        <button type="button" class="btn btn-default" data-ng-click="saveLocation()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span> 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label>Bio:</label>
+                        <h5 class="border">{{userData.bio}}</h5>
+                        <textarea rows="10" cols="20" class="form-control" data-ng-model="bio" data-ng-change="updateBio(bio)"></textarea>
+                        <button type="button" class="btn btn-default" data-ng-click="saveBio()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span> 
+                        </button><br>
+                    </div>
+                </div>
+                <a href="#/edit" id="cancelbtn"><button align="left" class="btn btn-default" data-ng-click="cancelEdit()">Cancel</button></a>
+                <button align="left" class="btn btn-default" data-ng-click="saveAll()">Save All</button>
+            </section>
+        </div>
+    </body>
+</html>

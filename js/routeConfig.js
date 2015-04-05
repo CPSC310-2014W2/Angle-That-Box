@@ -20,12 +20,6 @@ app.config(function($routeProvider) {
             controller: "LoggedOutCtrl"
          }
    )
-   .when("/wishlist",
-         {
-            templateUrl: "views/wishlist.html",
-            controller: "WishlistController"
-         }
-   )
    .when("/profile",
          {
             templateUrl: "views/profile.html",

@@ -1,5 +1,8 @@
-app.controller("RoutesController", function($scope, $firebase, RoutesFactory, MapFactory, DashboardFactory) {
+app.controller("RoutesController", function($scope, $firebase, AuthFactory, RoutesFactory, MapFactory, DashboardFactory) {
 
+   var authFactory = AuthFactory;
+   authFactory.verifyAuthenticated();
+   
 	var factory = DashboardFactory;
 	var rfactory = RoutesFactory;
 	var mapFactory = MapFactory; 
@@ -51,5 +54,9 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 			}
 		})
 	}
+	
+	$scope.logout = function() {
+      authFactory.logout();
+   }
 
 });
