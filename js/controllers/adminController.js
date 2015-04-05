@@ -14,33 +14,46 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, $cookies, AuthFac
   
   var index;
 
+
   liRef.$loaded().then(function(liRef) {
     index = parseInt(liRef.$value);
   });
 
+
 	$scope.upload = function() {
-      var data = null;
-      var file = $("#csvfile")[0].files[0];
+    var uid = $cookies.uid.split(":")[1];
+      var userRef = new Firebase("https://angle-that-box.firebaseio.com/users/" + uid)
+      userRef.once('value', function(snapshot) {
+      if (!snapshot.hasChild("admin")) {
+          alert("You do not have access");
+          return;
+      } else {
+      
 
-      if (file == undefined) {
-	      alert("Please choose a file");
-	      return
-      }
+        var data = null;
+        var file = $("#csvfile")[0].files[0];
 
-	  //begin reading csv file
-      var filereader = new FileReader();
-      filereader.readAsText(file);
-      filereader.onload = function(event) {
-          var csvData = event.target.result;
-          var objs = $.csv.toObjects(csvData);
-          
-          //check if object has required fields
-          var check = checkFields(objs[0]);
-          if (check) {
-	          pushDataBegin(objs);
+        if (file == undefined) {
+  	      alert("Please choose a file");
+  	      return
+        }
+
+  	  //begin reading csv file
+        var filereader = new FileReader();
+        filereader.readAsText(file);
+        filereader.onload = function(event) {
+            var csvData = event.target.result;
+            var objs = $.csv.toObjects(csvData);
+            
+            //check if object has required fields
+            var check = checkFields(objs[0]);
+            if (check) {
+  	          pushDataBegin(objs);
+            }
+
           }
-
       }
+    });
    }
 
    var checkFields = function(data) {
