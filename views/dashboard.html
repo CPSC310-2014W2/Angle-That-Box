@@ -29,7 +29,10 @@
         			<form>
         				<div class="form-group">
         					<label> Filter by name: </label>
-        					<input type="text" class="form-control" data-ng-model="search.CULTURAL_SPACE_NAME" data-ng-change="filtername(search)">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+            					<input type="text" class="form-control" data-ng-model="search.CULTURAL_SPACE_NAME" data-ng-change="filtername(search)">
+                            </div>
         				</div>
         
         				<div class="form-group">
