@@ -55,6 +55,37 @@ describe('Profile Controller', function() {
         //expect(scope.profileIMG).toBe(base64);
     }));
 
+    it('$factory.convertBirthday should convert the birthday from milliseconds to a string', angular.mock.inject(function($injector) {
+        // mock the function so we can test with userbday in place of userData.birthdate 
+        profilefactory.convertBirthday = function (userbday) {
+             var bday = new Date(userbday); 
+             var year = bday.getFullYear();
+
+             var months = [ "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July",
+                            "August",
+                            "September",
+                            "October",
+                            "November",
+                            "December"];
+
+             var month = months[bday.getMonth()];
+             var day = bday.getDate();
+             var birthdayString = (month +" "+ day +" "+ year);
+        
+         return birthdayString;
+          }
+
+        var userbday = 766220400000; // April 13 1994 in milliseconds
+
+        expect(profilefactory.convertBirthday(userbday)).toBe("April 13 1994");
+    }));
+
     
   });
 
