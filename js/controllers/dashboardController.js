@@ -35,12 +35,12 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
      $scope.favourites.$loaded().then(function() {
       angular.forEach ($scope.checkboxes, function (item) {
         angular.forEach ($scope.favourites, function (favourite) {
-            if (item.CULTURAL_SPACE_NAME == favourite.name) 
+            if (item.CULTURAL_SPACE_NAME == favourite.CULTURAL_SPACE_NAME) 
                   item.Heart = true;
         });
     });
    });
-    //var test = $scope.favourites;
+     
    };
 
    $scope.like = function (index) {
@@ -53,7 +53,7 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
 
      // check if the space is in your favourites to know if we're liking or unliking
      angular.forEach ($scope.favourites, function (favourite) {
-         if (favourite.name == n) 
+         if (favourite.CULTURAL_SPACE_NAME == n) 
                exists = true;
         });
 
