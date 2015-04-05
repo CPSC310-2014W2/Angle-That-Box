@@ -1,6 +1,5 @@
 app.controller("ProfileController", function($scope, $firebase, AuthFactory, ProfileFactory) {
 
-
    var authFactory = AuthFactory;
    authFactory.verifyAuthenticated();
 
