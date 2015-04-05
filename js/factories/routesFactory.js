@@ -104,8 +104,8 @@ app.factory('RoutesFactory', function($firebase, $location)
       var key = name.replace(/\.|\#|\$|\[|\]|\//g, ' ');
 
       //Google API limitation, route can only have 10 locations in it
-      if (routesSnap.numChildren() > 10){
-         alert("Route capacity reached, I'm sorry Reginal");
+      if (routesSnap.numChildren() > 9){
+         alert("Route capacity reached.");
       //only add if there are no duplicates
       } else if (!routesSnap.hasChild(key)) {
          ref.child(key).set({"name":name});
