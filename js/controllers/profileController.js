@@ -6,6 +6,7 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
 
    var factory = ProfileFactory; 
    $scope.userData = factory.getUserData();
+   $scope.confirmed; //for testing purposes
 
    //after getting the userData show either their pic or the default pic if they don't have one uploaded
    $scope.userData.$loaded().then(function() {
@@ -55,7 +56,10 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
         factory.delete();
         //show the default photo after deleting your pic
         $scope.profilePhoto = true;
-      } 
+        $scope.confirmed = true; //for testing
+      } else {
+        $scope.confirmed = false; 
+      }
     }
 
 });
