@@ -10,6 +10,14 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
 	"SQUARE_FEET","NUMBER_OF_SEATS","ACTIVE_SPACE","LONGITUDE","LATITIUDE"]
 
 	var locRef = ref.child("locations");
+  var liRef = $firebase(ref.child("lastIndex")).$asObject();
+  
+  var index;
+  // var nref = $firebase(new Firebase("https://radiant-torch-6582.firebaseio.com/ndex")).$asObject();
+  liRef.$loaded().then(function(liRef) {
+    index = parseInt(liRef.$value);
+  });
+  
 
 	$scope.upload = function() {
       var data = null;
@@ -30,7 +38,7 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
           //check if object has required fields
           var check = checkFields(objs[0]);
           if (check) {
-	          pushData(objs);
+	          pushDataBegin(objs);
           }
 
       }
@@ -57,29 +65,45 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
    var pushDataBegin = function(newData) {
 		var fbData = $firebase(locRef).$asArray();
 		fbData.$loaded().then(function() {
-			pushData(fbData, list);
+			pushData(newData, fbData);
 		})
    }
 
-   var pushData = function(newData, fbData) {
-     newData.forEach(function(newItem, i) {
-     	var itemNotPresent = true;
+  var pushData = function(newData, fbData) {
+    var allUploaded = true;
 
-		for (j in fbData) {
-			if (fbData[j].CULTURAL_SPACE_NAME == newItem.CULTURAL_SPACE_NAME) {
-				itemNotPresent = false;
-     			break;
-			}
-		}
+    newData.forEach(function(newItem) {
+      var itemNotPresent = true;
 
-     	if (itemNotPresent) {
-     		newItem.LATITIUDE = parseFloat(newItem.LATITIUDE);
-	        newItem.LONGITUDE = parseFloat(newItem.LONGITUDE);
-	        var key = "loc" + parseFloat(i);
-	        locRef.child(key).set(newItem);
-     	}
-     })
-   }
+      for (j in fbData) {
+        if (fbData[j].CULTURAL_SPACE_NAME == newItem.CULTURAL_SPACE_NAME) {
+          itemNotPresent = false;
+          allUploaded = false;
+          break;
+        }
+      }
+      
+      if (itemNotPresent) {
+        newItem.LATITIUDE = parseFloat(newItem.LATITIUDE);
+        newItem.LONGITUDE = parseFloat(newItem.LONGITUDE);
+        index += 1;
+        var key = "loc" + parseInt(index);
+        locRef.child(key).set(newItem);
+        ref.child("lastIndex").set(index);
+        }
+    })
+
+    alert(getFinishMessage(allUploaded));
+  }
+
+  var getFinishMessage = function(allUploaded) {
+    if (allUploaded) {
+      return "All items have been uploaded.";
+    } else {
+      return "One or more duplicate items exist. Not all items have been uploaded."
+    }
+
+  }
    
    $scope.logout = function() {
       authFactory.logout();
