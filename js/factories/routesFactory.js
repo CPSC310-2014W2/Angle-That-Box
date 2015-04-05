@@ -7,15 +7,15 @@ app.factory('RoutesFactory', function($firebase, $location)
    var currentUser = uRef.getAuth() || {"google" : google};
    var userID = currentUser.google.id;
    var ref = new Firebase(url + '/favouriteLocations/' + userID + '/wishlist');
-   var routes = $firebase(ref).$asArray();
+   var routeLocations = $firebase(ref).$asArray();
 
 
 
-   factory.getRoutes = function() {
-      return routes
+   factory.getRouteLocations = function() {
+      return routeLocations
    };
 
-   factory.getSelectable = function(route) {
+   factory.getPriorityOptions = function(route) {
       var select = [];
       for (var i = 0; i < route.length; i++)
          select.push({
@@ -24,11 +24,11 @@ app.factory('RoutesFactory', function($firebase, $location)
       return select;
    }
 
-   factory.getTheRoute = function(list, routes){
+   factory.getTheRoute = function(list, routeLocations){
       var routeNames = []
 
-      for(var i = 0; i <routes.length;i++){
-         routeNames.push(routes[i].name);
+      for(var i = 0; i <routeLocations.length;i++){
+         routeNames.push(routeLocations[i].name);
       }
       var retArray = [];
       for (var i = 0; i < list.length ; i++){
@@ -42,17 +42,17 @@ app.factory('RoutesFactory', function($firebase, $location)
       return retArray;
    }
 
-   factory.getTheRouteSorted = function(list,routes){
-      return this.sortRoute(this.getTheRoute(list,routes),routes);
+   factory.getTheRouteSorted = function(list,routeLocations){
+      return this.sortRoute(this.getTheRoute(list,routeLocations),routeLocations);
    }
 
-   factory.sortRoute = function(list, routes){
-      var sortedRoutes = this.sortRouteByPriority(routes);
+   factory.sortRoute = function(list, routeLocations){
+      var routeSorted = this.sortRouteByPriority(routeLocations);
       var sortedList = [];
-      for(var i = 0; i < sortedRoutes.length;i++){
+      for(var i = 0; i < routeSorted.length;i++){
 
          var itemInList = $.grep(list, function(e){
-            return e.CULTURAL_SPACE_NAME == sortedRoutes[i].name;
+            return e.CULTURAL_SPACE_NAME == routeSorted[i].name;
          });
          if (itemInList.length > 0){
             sortedList.push(itemInList[0]);
@@ -61,9 +61,9 @@ app.factory('RoutesFactory', function($firebase, $location)
       return sortedList;
    }
 
-   factory.sortRouteByPriority = function(routes)
+   factory.sortRouteByPriority = function(routeLocations)
    {
-      var sortedRoute = routes;
+      var sortedRoute = routeLocations;
       var swapped = true;
       var size = sortedRoute.length;
       while (swapped)
@@ -72,7 +72,7 @@ app.factory('RoutesFactory', function($firebase, $location)
          for (var i = 1; i <size;i++)
          {
             if(sortedRoute[i - 1].$priority > sortedRoute[i].$priority){
-               var temp = routes[i -1];
+               var temp = routeLocations[i -1];
                sortedRoute[i - 1] = sortedRoute[i];
                sortedRoute[i] = temp;
                swapped = true;
@@ -111,7 +111,7 @@ app.factory('RoutesFactory', function($firebase, $location)
          ref.child(key).set({"name":name});
          alert("Add Successful");
       } else {
-         alert("Item is already in Routes");
+         alert("Item is already in Route");
       }
    };
 

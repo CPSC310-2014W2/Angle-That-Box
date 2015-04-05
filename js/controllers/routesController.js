@@ -4,14 +4,14 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 	var rfactory = RoutesFactory;
 	var mapFactory = MapFactory; 
 
-	$scope.routes = rfactory.getRoutes();
+	$scope.routeLocations = rfactory.getRouteLocations();
 	$scope.orderSelect = [];
 	$scope.routeOrder = [];
 	$scope.markers = []; //storing markers for reference
 	var routeCreated = false;
 
-	$scope.routes.$loaded().then(function(){
-		$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
+	$scope.routeLocations.$loaded().then(function(){
+		$scope.orderSelect = RoutesFactory.getPriorityOptions($scope.routeLocations);
 	})
 
 	$scope.list = factory.getList(); 
@@ -19,34 +19,35 @@ app.controller("RoutesController", function($scope, $firebase, RoutesFactory, Ma
 
 	var map = mapFactory.createMap();
 	$scope.list.$loaded().then(function() {
-      mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routes));
+      mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routeLocations));
   	});
 
 
 	$scope.createRoute = function() {
-		if(!rfactory.validRouteLength($scope.routes))
+		if(!rfactory.validRouteLength($scope.routeLocations))
 		{
-			alert('cannot route 1 marker');
+			alert('need at least 2 locations');
 		} else
 		{
 			routeCreated = true;
 			$scope.list.$loaded().then(function() {
-			var routeToRoute = RoutesFactory.getTheRouteSorted($scope.list, $scope.routes);
-			mapFactory.clearMarkers();
-			mapFactory.createRoute(routeToRoute);
+				var routeToRoute = RoutesFactory.getTheRouteSorted($scope.list, $scope.routeLocations);
+				mapFactory.clearMarkers();
+				mapFactory.createRoute(routeToRoute);
 			});
 		}
 	}
 
 	$scope.removeRouteMarker = function(index){
-		$scope.routes.$remove(index).then(function(){
-			$scope.orderSelect = RoutesFactory.getSelectable($scope.routes);
-			if(routeCreated && rfactory.validRouteLength($scope.routes))
+		$scope.routeLocations.$remove(index).then(function(){
+			$scope.orderSelect = RoutesFactory.getPriorityOptions($scope.routeLocations);
+			if(routeCreated && rfactory.validRouteLength($scope.routeLocations))
 			{
 				$scope.createRoute();
 			} else {
+				mapFactory.clearMarkers();
 				$scope.list.$loaded().then(function() {
-     				mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routes));
+     				mapFactory.populateMap(map, RoutesFactory.getTheRoute($scope.list, $scope.routeLocations));
   				});
 			}
 		})
