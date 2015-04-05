@@ -1,47 +1,35 @@
-<div class="jumbotron" id="banner">
-	<div class="container">
-		<br><br><br>
-		<h1 style="color:white; font-family:Brush Script MT; font-size:550%">Outinglicious</h1>
-		<button class="btn btn-primary" ng-click="loginWithGoogle()">Login using Google</button>
-	    <a href="#/createAccount"><button class="btn btn-default">Create New Account</button></a>
-	</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <div class="jumbotron" id="banner">
+            <div class="container">
+                <br><br><br>
+                <h1 style="color:white; font-family:Brush Script MT; font-size:550%">Outinglicious</h1>
+                <button class="btn btn-primary" data-ng-click="loginWithGoogle()">Login using Google</button>
+                <a href="#/createAccount"><button class="btn btn-default">Create New Account</button></a>
+            </div>
+        </div>
+        <div class="container-fluid well" style="border-radius:0px; background-color:gray; border-right:0px; max-height:220px">
+            <div class="row">
+                <div class="well mainWell">
+                    <h3>What is Outinglicious?</h3>
+                    <p>A simple app that helps you plan your next outing around Vancouver.</p>
+                    <p>Inspired by the desire to learn more about Vancouver, and based on data on cultural spaces from OpenDataVancouver.</p>
 
-<!-- 		<div class="row">
-			<div class="col-md-10">
-				<div class="col-md-offset-8">
-				<div class="pull-right">
-				<p style="text-align:center; color:yellow"><i><q>Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q></i>
-					<br>
-					<div style="text-align:right; color:yellow; font-size:120%" id="personQuoted"><strong>- Douglas Coupland</strong></div>
-				</p>
-			</div>
-		</div>
-	</div>
-</div> -->
+                    <h3>Functionality</h3>
+                    <li>Browse cultural spaces in Vancouver and save your favourites.</li>
+                    <li>Create an itinerary and plan your trip with the help of Google Maps's beautiful UI.  Explore the city in street view so you know exactly where to go.</li>
+                    <li>Share locations with friends via Facebook or Twitter!  Or both, let's share the love!</li>
+                    <li>Create a profile page, because why not?  No one else will see it, but you'll know it's there...</li>
 
-</div>
-<div class="container-fluid well" style="border-radius:0px; background-color:gray; border-right:0px; max-height:220px">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="well mainWell">
-				<h3 style="text-align:center;">Functionality</h3>
-				<p>This is some filler text</p>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="well mainWell">
-				<h3 style="text-align:center;">About Outinglicious</h3>
-				<p>This is some filler text</p>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="well mainWell">
-				<h3></h3>
-				<p><i><q>Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q></i></p>
-				<div style="text-align:right; font-size:120%;" id="personQuoted"><strong>Douglas Coupland</strong></div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
+                    <h3>A developer's favourite Vancouver quote</h3>
+                    <p><i><q>Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q></i></p>
+                    <div style="text-align:right; font-size:120%;" id="personQuoted"><strong>Douglas Coupland</strong></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
