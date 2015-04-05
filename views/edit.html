@@ -1,61 +1,60 @@
-<body>	
-	<header>
-		<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#/dashboard">Dashboard</a></li>
-				<li><a href="#/profile">Profile</a></li>
-				<li><a href="#/routes">Routes</a></li>
-				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-	</header>
-	
-	<nav>
-		<ul id="n" class="clearfix">
-			<li><a class="btn btn-default" href="#/edit" role="button">Edit Profile</a></li>
-		</ul>
-	</nav>
-	
-	<div id="content" class="clearfix">
-		<section id="right">
-
-			<div id="userStats" class="clearfix" ng-model="userData">
-		<div class="form-group">
-		    <label>Name:</label>
-		    <h5 class="border">{{userData.name}}</h5>
-		    <input type="text" class="form-control" ng-model="name" ng-change="updateName(name)">
-		    <button type="button" class="btn btn-default" ng-click="saveName()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button>
-					
-		</div>
-		<div class="form-group">
-		    <label>Location:</label>
-		    <h5 class="border">{{userData.location}}</h5>
-		    <input type="text" class="form-control" ng-model="location" ng-change="updateLocation(location)">
-		     <button type="button" class="btn btn-default" ng-click="saveLocation()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button>
-        	
-		</div>
-		<div class="form-group">
-		    <label>Bio:</label>
-		    <h5 class="border">{{userData.bio}}</h5>
-		    <textarea rows="10" cols="20"class="form-control" ng-model="bio" ng-change="updateBio(bio)"></textarea>
-		    <button type="button" class="btn btn-default" ng-click="saveBio()">
-         		<span class="glyphicon glyphicon-floppy-disk"></span> 
-        	</button><br>
-		</div>
-			</div>
-
-		<a href="#/edit" id="cancelbtn"><button align="left" class="btn btn-default" ng-click="cancelEdit()">Cancel</button></a>
-		<button align="left" class="btn btn-default" ng-click="saveAll()">Save All</button>
-
-		</section>
-	</div>
-	
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <div class="navbar-brand" id="navHeader">Outinglicious</div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#/dashboard">Dashboard</a></li>
+                            <li><a href="#/routes">Routes</a></li>
+                            <li><a href="#/administration">Administration</a></li>
+                            <li><a href="#/profile">Profile</a></li>
+                            <li class="handPointer"><a href="" data-ng-click="logout()">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <div>
+            <nav>
+                <ul id="n" class="clearfix">
+                    <li><a class="btn btn-default" href="#/edit" role="button">Edit Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div id="content" class="clearfix">
+            <section id="right">
+                <div class="pic">
+                    <!-- no profile picture is an empty gray box, only show this if the user doesn't have a pic-->
+                    <img id="default" src="http://mountpisgah.org/wp-content/uploads/2014/11/default-profile-picture.jpg" alt="Default Profile Picture" data-ng-show="profilePhoto" class="ng-hide">
+                    <!--only show this if they have a pic-->
+                    <img id ="imageID" src="{{userData.photo}}" alt="Profile Picture" width="150" height="150" data-ng-hide="profilePhoto"/>
+                    <br><br>
+                    <!-- turning standard "Choose File" into "Upload Photo" button. Using onchange because ng-change/ng-model cannot bind to input type file. angular.element is alias for jQuery. This is passed to uplaodPhoto so we can get all the image info-->
+                    <a href="#" class="btn btn-default" type="button" onclick="document.getElementById('fileID').click(); return false;">Upload Photo</a>
+                    <input id="fileID" type="file" style="visibility: hidden; display: none;" accept="image/*" onchange="angular.element(this).scope().uploadPhoto(this)" />
+                    <!--only show remove button if there's a pic to remove -->
+                    <button type="button" class="btn btn-default" data-ng-hide="profilePhoto" data-ng-click="deletePhoto()">
+                        <span class="glyphicon glyphicon-remove"></span> 
+                    </button>
+                </div>
+            </section>
+            <section id="left">
+                <div data-ng-model="userData">
+                    <h3>{{userData.name}}</h3>
+                    <h5>Birthday: {{userData.birthdate}}</h5>
+                    <h5>Location: {{userData.location}}</h5>
+                    <h5>Bio:</h5>
+                    <p>{{userData.bio}}</p>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
