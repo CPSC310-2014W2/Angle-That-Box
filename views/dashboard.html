@@ -1,79 +1,73 @@
-<nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-collapse collapse">
-			<font class="navbar-brand" id="navHeader">Outinglicious</font></li>
-			<ul class="nav navbar-nav navbar-right">
-				<!-- <div id="list">
-					<li id="list"><font id="navHeader">Outinglicious</font></li>
-				</div> -->
-				<li><a href="#/administration">Administration</a></li>
-				<li><a href="#/profile">Profile</a></li>
-				<li><a href="#/routes">Routes</a></li>
-				<li class="handPointer"><a ng-click="logout()">Log out</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<div class="container spacing">
-	<div class="row">
-		<div class="col-md-4">
-			<form>
-				<div class="form-group">
-					<label> Filter by name: </label>
-					<input type="text" class="form-control" ng-model="search.CULTURAL_SPACE_NAME" ng-change="filtername(search)">
-				</div>
-
-				<div class="form-group">
-					<label> Filter by type:	</label>
-					<select data-ng-model='search.TYPE'
-           			data-ng-options="option.value as option.name for option in filterTypes"
-           			data-ng-change="filtertype(search.TYPE)"
-           			data-ng-init="search.TYPE=''">
-					</select>
-				</div>
-
-
-				<div class="form-group"data-ng-model='selectedSortOrder' 
-               			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'">
-      			</div>
-			    
-			     <!-- ng-click calls methods from the controller whenever the button is clicked-->
-			    <div class="form-group">
-					<button class="btn btn-default" ng-click="addFavourites()">Add to Favourites</button>
-					<button class="btn btn-default" ng-click="addRoute()">Add to Route</button>
-					<label>View Likes:</label>
-					<input type="checkbox" ng-model="likes">
-					</input>
-				</div>
-
-				
-
-				<div class="list-group scrollable">
-					<button ng-hide="!item.Heart &&  likes" id="locationsItem" class="list-group-item" ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" ng-click="openInfoWindow($index); like($index); add($index)"><input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
-						<span class="pull-right">
-    						<div ng-Show="item.Heart" class="heart"></div>
-    						<div ng-hide="item.Heart" class="heartFill"></div>
-						</span>
-						
-					</button>
-					<div ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
-				</div>
-			</form>
-		</div>
-		<div class="col-md-8">
-			<div class="pull-right" id="map-canvas"></div>
-				<button class="btn btn-default pull-right" style="margin-top:10px" ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
-				<button ng-click="share('fbPost')" style="margin-top:10px; margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
-		</div>
-	<div>
-</div>
-<!-- 		<div class="col-md-3">
-			<div class="pull-right" id="quoteContent">
-				<p style="text-align:center;" id="quote"><q id="box">Vancouver is the square root of negative one. Technically it shouldn't exist, but it does. I can't imagine living anywhere else.</q>
-					<br>
-					<div style="text-align:right;" id="personQuoted"><strong>- Douglas Coupland</strong></div>
-				</p>
-			</div>
-		</div> -->
-
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <div class="navbar-brand" id="navHeader">Outinglicious</div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/dashboard">Dashboard</a></li>
+                        <li><a href="#/routes">Routes</a></li>
+                        <li><a href="#/administration">Administration</a></li>
+                        <li><a href="#/profile">Profile</a></li>
+                        <li class="handPointer"><a href="" data-ng-click="logout()">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container spacing">
+        	<div class="row">
+        		<div class="col-md-4">
+        			<form>
+        				<div class="form-group">
+        					<label> Filter by name: </label>
+        					<input type="text" class="form-control" data-ng-model="search.CULTURAL_SPACE_NAME" data-ng-change="filtername(search)">
+        				</div>
+        
+        				<div class="form-group">
+        					<label> Filter by type:	</label>
+        					<select data-ng-model='search.TYPE'
+                       			data-ng-options="option.value as option.name for option in filterTypes"
+                       			data-ng-change="filtertype(search.TYPE)"
+                       			data-ng-init="search.TYPE=''">
+        					</select>
+        				</div>
+        
+        
+        				<div class="form-group" data-ng-model='selectedSortOrder' 
+                       			data-ng-init="selectedSortOrder='+CULTURAL_SPACE_NAME'">
+              			</div>
+        			    
+        			     <!-- ng-click calls methods from the controller whenever the button is clicked-->
+        			    <div class="form-group">
+        					<button class="btn btn-default" data-ng-click="addFavourites()">Add to Favourites</button>
+        					<button class="btn btn-default" data-ng-click="addRoute()">Add to Route</button>
+        					<label>View Likes:</label>
+        					<input type="checkbox" data-ng-model="likes">
+        				</div>
+        
+        				<div class="list-group scrollable">
+        					<button data-ng-hide="!item.Heart &&  likes" id="locationsItem" class="list-group-item" data-ng-repeat="item in checkboxes | orderBy:selectedSortOrder |filter: search" data-ng-click="openInfoWindow($index); like($index); add($index)">
+                                <input type="checkbox" ng-model="checkboxes[$index].checked" style="margin:-5px 5px 0 0">{{item.CULTURAL_SPACE_NAME}}</input>
+        						<span class="pull-right">
+            						<div ng-Show="item.Heart" class="heart"></div>
+            						<div ng-hide="item.Heart" class="heartFill"></div>
+        						</span>
+        					</button>
+        					<div data-ng-show="(list | filter:search).length==0">No items meet filter requirements</div> 
+        				</div>
+        			</form>
+        		</div>
+        		<div class="col-md-8">
+        			<div class="pull-right" id="map-canvas"></div>
+        			<button class="btn btn-default pull-right" style="margin-top:10px" data-ng-click="share('tweet')"><img src="css/images/Twitter_logo_blue.png"> Tweet</button>
+        			<button data-ng-click="share('fbPost')" style="margin-top:10px; margin-right:5px" class="btn btn-default pull-right"><img src="css/images/FB-f-Logo__blue_29.png"> Share</button>
+        		</div>
+        	</div>
+        </div>
+    </body>
+</html>
