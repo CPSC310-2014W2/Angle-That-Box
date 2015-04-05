@@ -1,9 +1,9 @@
-app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
+app.controller('AdminCtrl', function($scope, $firebase, $http, $cookies, AuthFactory) {
 
    var authFactory = AuthFactory;
    authFactory.verifyAuthenticated();
    
-	var url = "https://radiant-torch-6582.firebaseio.com/";
+	var url = "https://angle-that-box.firebaseio.com";
     var ref = new Firebase(url);
 
     var requiredFields = ["CULTURAL_SPACE_NAME","WEBSITE","TYPE","PRIMARY_USE","ADDRESS","LOCAL_AREA","OWNERSHIP",
@@ -17,7 +17,6 @@ app.controller('AdminCtrl', function($scope, $firebase, $http, AuthFactory) {
   liRef.$loaded().then(function(liRef) {
     index = parseInt(liRef.$value);
   });
-  
 
 	$scope.upload = function() {
       var data = null;

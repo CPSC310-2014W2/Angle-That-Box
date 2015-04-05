@@ -1,4 +1,4 @@
-app.factory('LoginFactory', function($firebase, $location)
+app.factory('LoginFactory', function($firebase, $location, $cookies)
 {
    var factory = {};
    var url = "https://angle-that-box.firebaseio.com/users";
@@ -9,6 +9,7 @@ app.factory('LoginFactory', function($firebase, $location)
          if (error) {
             console.log("Login failed", error);
          } else {
+            $cookies.uid = authData.uid;
             factory.loginIfUserExists($scope, authData.google.id);
          }
       });
