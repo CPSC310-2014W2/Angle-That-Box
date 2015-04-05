@@ -21,7 +21,7 @@ app.controller("ProfileController", function($scope, $firebase, AuthFactory, Pro
    }
 
    $scope.unlike = function (index) {
-      if (confirm('Are you sure you want to unlike' + $scope.favourites[index].CULTURAL_SPACE_NAME + '?')) {
+      if (confirm('Are you sure you want to unlike ' + $scope.favourites[index].CULTURAL_SPACE_NAME + ' ?')) {
       $scope.favourites[index].Heart = !$scope.favourites[index].Heart;
       fFactory.delete($scope.favourites[index]);
     }
