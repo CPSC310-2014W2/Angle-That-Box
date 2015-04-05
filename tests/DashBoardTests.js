@@ -7,13 +7,13 @@
     it('Input to set to empty string when item added', angular.mock.inject(function($controller, $injector) {
 
       var scope = {};
-      ctrl = $controller('dashboardController', {$scope:scope});
+      ctrl = $controller('DashboardCtrl', {$scope:scope});
       expect( scope.checkboxes.length).toBe(0);
     }));
 
     it('Input to set to empty string when item added', angular.mock.inject(function($controller, $injector) {
       var scope = {};
-      ctrl = $controller('dashboardController', {$scope:scope});
+      ctrl = $controller('DashboardCtrl', {$scope:scope});
       expect( scope.filterTypes.length).toBe(1);
     }));
 
