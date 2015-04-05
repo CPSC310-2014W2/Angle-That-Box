@@ -1,57 +1,54 @@
 <!DOCTYPE html>
-<html ng-app="app">
-<head>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="css/custom/style.css" />
-</head>
-<body>
-
-    <div ng-view></div>
-
-    <div id="fb-root"></div>
-    <script type="text/javascript" src="scripts/facebook_api.js"></script>
+<html data-ng-app="app">
+    <head>
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="css/custom/style.css" />
+    </head>
+    <body>
+        <div data-ng-view></div>
     
-    <!-- scripts needed for foundation css -->
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/jquery.csv-0.71.js"></script>
-    <script src="scripts/bootstrap.js"></script>
-
-    <!-- AngularJS scripts -->
-    <script type="text/javascript" src="scripts/angular.js"></script>
-    <script type="text/javascript" src="scripts/angular-route.js"></script>
-    <script type="text/javascript" src="scripts/firebase.js"></script>
-    <script type="text/javascript" src="scripts/angularfire.min.js"></script>
-
-    <!-- Modules -->
-    <script type="text/javascript" src="js/app.js"></script>
-
-    <!-- Controllers -->
-    <script type="text/javascript" src="js/controllers/dashboardController.js"></script>
-    <script type="text/javascript" src="js/controllers/loggedOutController.js"></script>
-    <script type="text/javascript" src="js/controllers/profileController.js"></script>
-    <script type="text/javascript" src="js/controllers/routesController.js"></script>
-    <script type="text/javascript" src="js/controllers/editController.js"></script>
-    <script type="text/javascript" src="js/controllers/adminController.js"></script>
-
-    <!-- Factories -->
-    <script type="text/javascript" src="js/factories/authFactory.js"></script>
-    <script type="text/javascript" src="js/factories/createAccountFactory.js"></script>
-    <script type="text/javascript" src="js/factories/dashboardFactory.js"></script>
-    <script type="text/javascript" src="js/factories/loginFactory.js"></script>
-    <script type="text/javascript" src="js/factories/mapFactory.js"></script>
-    <script type="text/javascript" src="js/factories/favouriteFactory.js"></script>
-    <script type="text/javascript" src="js/factories/profileFactory.js"></script>
-    <script type="text/javascript" src="js/factories/routesFactory.js"></script>
-    <script type="text/javascript" src="js/factories/editFactory.js"></script>
-    <script type="text/javascript" src="js/factories/socialMediaFactory.js"></script>
-    <script type="text/javascript" src="js/factories/projectUrl.js"></script>
-
-
-    <!-- Route Config -->
-    <script type="text/javascript" src="js/routeConfig.js"></script>
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCubhvEUZ0AeBAEX69PNztKZyJ53XfZMTY"></script>
-</body>
-<style>
-</style>
+        <div id="fb-root"></div>
+        <script type="text/javascript" src="scripts/facebook_api.js"></script>
+        
+        <!-- scripts needed for foundation css -->
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/jquery.csv-0.71.js"></script>
+        <script src="scripts/bootstrap.js"></script>
+    
+        <!-- AngularJS scripts -->
+        <script type="text/javascript" src="scripts/angular.js"></script>
+        <script type="text/javascript" src="scripts/angular-route.js"></script>
+        <script type="text/javascript" src="scripts/firebase.js"></script>
+        <script type="text/javascript" src="scripts/angularfire.min.js"></script>
+    
+        <!-- Modules -->
+        <script type="text/javascript" src="js/app.js"></script>
+    
+        <!-- Controllers -->
+        <script type="text/javascript" src="js/controllers/dashboardController.js"></script>
+        <script type="text/javascript" src="js/controllers/loggedOutController.js"></script>
+        <script type="text/javascript" src="js/controllers/profileController.js"></script>
+        <script type="text/javascript" src="js/controllers/routesController.js"></script>
+        <script type="text/javascript" src="js/controllers/editController.js"></script>
+        <script type="text/javascript" src="js/controllers/adminController.js"></script>
+    
+        <!-- Factories -->
+        <script type="text/javascript" src="js/factories/authFactory.js"></script>
+        <script type="text/javascript" src="js/factories/createAccountFactory.js"></script>
+        <script type="text/javascript" src="js/factories/dashboardFactory.js"></script>
+        <script type="text/javascript" src="js/factories/loginFactory.js"></script>
+        <script type="text/javascript" src="js/factories/mapFactory.js"></script>
+        <script type="text/javascript" src="js/factories/favouriteFactory.js"></script>
+        <script type="text/javascript" src="js/factories/profileFactory.js"></script>
+        <script type="text/javascript" src="js/factories/routesFactory.js"></script>
+        <script type="text/javascript" src="js/factories/editFactory.js"></script>
+        <script type="text/javascript" src="js/factories/socialMediaFactory.js"></script>
+        <script type="text/javascript" src="js/factories/projectUrl.js"></script>
+    
+    
+        <!-- Route Config -->
+        <script type="text/javascript" src="js/routeConfig.js"></script>
+    
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCubhvEUZ0AeBAEX69PNztKZyJ53XfZMTY"></script>
+    </body>
 </html>
