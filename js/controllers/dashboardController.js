@@ -105,14 +105,6 @@ app.controller('DashboardCtrl', function($scope, $filter, $http, AuthFactory, Da
         });
    }
 
-   $scope.addFavourites = function() { 
-      angular.forEach($scope.checkboxes, function (item){
-         if (item.checked) 
-            fFactory.add(item);
-      });
-      $scope.unCheckAll();
-   }
-
    $scope.addRoute = function() { 
        angular.forEach($scope.checkboxes, function (item) {
          if (item.checked) 
